@@ -375,6 +375,7 @@ class _RouteScreenState extends State<RouteScreen> {
         TileLayer(
           urlTemplate: MapConfig.urlTemplate,
           userAgentPackageName: MapConfig.userAgent,
+          retinaMode: RetinaMode.isHighDensity(context),
         ),
         if (_ruta != null)
           PolylineLayer(
