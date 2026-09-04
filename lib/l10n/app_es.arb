@@ -1,0 +1,66 @@
+{
+  "@@locale": "es",
+  "appTitle": "A la sombra",
+  "@appTitle": {},
+  "exampleRoute": "Ruta de ejemplo",
+  "clearPoints": "Borrar puntos",
+  "tapForStart": "Toca el mapa para marcar el inicio.",
+  "tapForEnd": "Ahora toca el destino.",
+  "departNow": "Salir ahora",
+  "departAt": "Salida {time}",
+  "@departAt": {
+    "placeholders": { "time": { "type": "String", "example": "17:30" } }
+  },
+  "changeTime": "Cambiar hora",
+  "now": "Ahora",
+  "departureTimeTitle": "Hora de salida",
+  "directLabel": "Directa",
+  "shadeLabel": "Sombra",
+  "sliderShortest": "ruta más corta",
+  "sliderPreferShade": "prioriza sombra ×{factor}",
+  "@sliderPreferShade": {
+    "placeholders": { "factor": { "type": "String", "example": "3.0" } }
+  },
+  "noRoute": "No se ha encontrado ninguna ruta peatonal entre esos puntos.",
+  "nightShortest": "Es de noche: se muestra la ruta más corta.",
+  "networkError": "No se han podido descargar los datos del mapa. Revisa la conexión e inténtalo de nuevo.",
+  "statKm": "{value} km",
+  "@statKm": {
+    "placeholders": { "value": { "type": "String", "example": "1,20" } }
+  },
+  "statM": "{value} m",
+  "@statM": {
+    "placeholders": { "value": { "type": "int", "example": "855" } }
+  },
+  "statMinutes": "{value} min",
+  "@statMinutes": {
+    "placeholders": { "value": { "type": "int", "example": "10" } }
+  },
+  "statShade": "{percent} % en sombra",
+  "@statShade": {
+    "placeholders": { "percent": { "type": "int", "example": "47" } }
+  },
+  "statDetour": "+{meters} m vs directa",
+  "@statDetour": {
+    "placeholders": { "meters": { "type": "int", "example": "180" } }
+  },
+  "statCache": "caché",
+  "calculating": "Calculando…",
+  "searchRoute": "Buscar ruta",
+  "language": "Idioma",
+  "languageSystem": "Automático (sistema)",
+  "legendShade": "En sombra",
+  "legendSun": "Al sol",
+  "routeTimeNow": "ahora, {time}",
+  "@routeTimeNow": {
+    "placeholders": { "time": { "type": "String", "example": "12:10" } }
+  },
+  "recalculate": "Recalcular",
+  "about": "Acerca de",
+  "dataSources": "Fuentes de datos",
+  "openSourceLicenses": "Licencias de código abierto",
+  "aboutIntro": "Rutas a pie que buscan ir por la sombra durante las horas de sol.",
+  "creditMap": "Calles y edificios: © colaboradores de OpenStreetMap (ODbL).",
+  "creditTiles": "Teselas del mapa: OpenStreetMap.",
+  "creditSun": "Posición del sol: algoritmo de Jean Meeus."
+}
