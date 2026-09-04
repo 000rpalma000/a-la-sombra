@@ -1,0 +1,5 @@
+package com.alasombra.app
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity : FlutterActivity()
