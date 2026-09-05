@@ -140,4 +140,13 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get creditSun => 'Posició del sol: algorisme de Jean Meeus.';
+
+  @override
+  String get removeAdsButton => 'Treu anuncis · 1,99 €';
+
+  @override
+  String get adsSectionTitle => 'Anuncis';
+
+  @override
+  String get adsAlreadyRemoved => 'Ja has tret els anuncis. Gràcies!';
 }

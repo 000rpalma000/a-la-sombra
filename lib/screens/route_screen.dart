@@ -7,10 +7,12 @@ import '../l10n/app_localizations.dart';
 import '../models/geo.dart';
 import '../models/route_result.dart';
 import '../models/shadow_map.dart';
+import '../services/ads_service.dart';
 import '../services/locale_controller.dart';
 import '../services/location_service.dart';
 import '../services/osm_walk_service.dart';
 import '../services/router_service.dart';
+import '../services/search_gate.dart';
 import '../services/shadow_service.dart';
 import 'about_screen.dart';
 
@@ -77,6 +79,7 @@ class _RouteScreenState extends State<RouteScreen> {
   @override
   void initState() {
     super.initState();
+    AdsService.instancia.inicializar();
     _location.ubicacionActual().then((u) {
       if (!mounted) return;
       setState(() => _centroInicial = u.punto);
@@ -235,6 +238,9 @@ class _RouteScreenState extends State<RouteScreen> {
         );
       }
       debugPrint('[ruta] total ${cron.elapsedMilliseconds} ms');
+      if (await SearchGate().registrarBusqueda()) {
+        await AdsService.instancia.mostrarSiListo();
+      }
     } catch (e) {
       debugPrint('[ruta] error: $e');
       if (!mounted) return;

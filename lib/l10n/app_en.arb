@@ -37,5 +37,8 @@
   "aboutIntro": "Walking routes that try to stay in the shade during daylight.",
   "creditMap": "Streets and buildings: © OpenStreetMap contributors (ODbL).",
   "creditTiles": "Map tiles: OpenStreetMap.",
-  "creditSun": "Sun position: algorithm by Jean Meeus."
+  "creditSun": "Sun position: algorithm by Jean Meeus.",
+  "removeAdsButton": "Remove ads · €1.99",
+  "adsSectionTitle": "Ads",
+  "adsAlreadyRemoved": "You already removed ads. Thank you!"
 }
