@@ -150,4 +150,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get adsAlreadyRemoved => 'Ya has quitado los anuncios. ¡Gracias!';
+
+  @override
+  String get removeAdsPromptTitle => '¿Sin anuncios?';
+
+  @override
+  String get removeAdsPromptBody => 'Quítalos para siempre con un único pago.';
+
+  @override
+  String get notNow => 'Ahora no';
+
+  @override
+  String get adsRemovedMockDone => 'Anuncios quitados (simulado).';
 }

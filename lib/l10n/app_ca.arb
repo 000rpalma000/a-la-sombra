@@ -40,5 +40,9 @@
   "creditSun": "Posició del sol: algorisme de Jean Meeus.",
   "removeAdsButton": "Treu anuncis · 1,99 €",
   "adsSectionTitle": "Anuncis",
-  "adsAlreadyRemoved": "Ja has tret els anuncis. Gràcies!"
+  "adsAlreadyRemoved": "Ja has tret els anuncis. Gràcies!",
+  "removeAdsPromptTitle": "Sense anuncis?",
+  "removeAdsPromptBody": "Treu-los per sempre amb un únic pagament.",
+  "notNow": "Ara no",
+  "adsRemovedMockDone": "Anuncis trets (simulat)."
 }

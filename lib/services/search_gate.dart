@@ -1,31 +1,41 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Cuenta cada "búsqueda" (pulsación de "Buscar ruta") de forma persistente,
-/// para mostrar un anuncio cada [cadaN] búsquedas — incluso entre sesiones
-/// (el contador se guarda en disco, no se reinicia al cerrar la app).
+/// Ritmo de anuncios en "A la sombra": tras **cada** búsqueda de ruta se deja
+/// un anuncio "armado", y se muestra cuando el usuario va a hacer la
+/// siguiente. Estado persistente (sobrevive a cerrar la app).
+///
+/// Comprar "quitar anuncios" pone [anunciosEliminados] a `true` para siempre.
+/// De momento la "compra" es un mock local; el cobro real (in_app_purchase +
+/// producto en las tiendas) se conecta más adelante sin cambiar esta clase.
 class SearchGate {
-  static const cadaN = 3;
-  static const _kContador = 'search_gate_contador';
+  static const _kArmado = 'search_gate_armado';
   static const _kSinAnuncios = 'search_gate_sin_anuncios';
 
-  /// Registra una búsqueda y devuelve `true` si toca mostrar un anuncio.
-  Future<bool> registrarBusqueda() async {
-    final prefs = await SharedPreferences.getInstance();
-    if (prefs.getBool(_kSinAnuncios) ?? false) return false;
-    final n = (prefs.getInt(_kContador) ?? 0) + 1;
-    await prefs.setInt(_kContador, n);
-    return n % cadaN == 0;
+  /// Tras completar una búsqueda: deja un anuncio pendiente para la próxima.
+  Future<void> armarAnuncio() async {
+    final sp = await SharedPreferences.getInstance();
+    if (sp.getBool(_kSinAnuncios) ?? false) return;
+    await sp.setBool(_kArmado, true);
+  }
+
+  /// Al empezar otra búsqueda: ¿hay un anuncio armado? Lo consume y lo indica.
+  Future<bool> consumirAnuncioArmado() async {
+    final sp = await SharedPreferences.getInstance();
+    if (sp.getBool(_kSinAnuncios) ?? false) return false;
+    final armado = sp.getBool(_kArmado) ?? false;
+    if (armado) await sp.setBool(_kArmado, false);
+    return armado;
   }
 
   Future<bool> anunciosEliminados() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_kSinAnuncios) ?? false;
+    final sp = await SharedPreferences.getInstance();
+    return sp.getBool(_kSinAnuncios) ?? false;
   }
 
-  /// Compra simulada de "quitar anuncios" (in-app purchase real pendiente de
-  /// cuenta de Play Console / App Store Connect).
+  /// TODO: sustituir por una compra real (in_app_purchase) cuando haya
+  /// cuentas de App Store Connect / Play Console con el producto creado.
   Future<void> eliminarAnunciosMock() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_kSinAnuncios, true);
+    final sp = await SharedPreferences.getInstance();
+    await sp.setBool(_kSinAnuncios, true);
   }
 }

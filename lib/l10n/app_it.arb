@@ -40,5 +40,9 @@
   "creditSun": "Posizione del sole: algoritmo di Jean Meeus.",
   "removeAdsButton": "Rimuovi pubblicità · 1,99 €",
   "adsSectionTitle": "Pubblicità",
-  "adsAlreadyRemoved": "Hai già rimosso la pubblicità. Grazie!"
+  "adsAlreadyRemoved": "Hai già rimosso la pubblicità. Grazie!",
+  "removeAdsPromptTitle": "Senza pubblicità?",
+  "removeAdsPromptBody": "Rimuovila per sempre con un pagamento unico.",
+  "notNow": "Non ora",
+  "adsRemovedMockDone": "Pubblicità rimossa (simulato)."
 }

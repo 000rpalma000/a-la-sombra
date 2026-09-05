@@ -149,4 +149,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get adsAlreadyRemoved => 'You already removed ads. Thank you!';
+
+  @override
+  String get removeAdsPromptTitle => 'No ads?';
+
+  @override
+  String get removeAdsPromptBody =>
+      'Remove them for good with a one-time payment.';
+
+  @override
+  String get notNow => 'Not now';
+
+  @override
+  String get adsRemovedMockDone => 'Ads removed (mock).';
 }

@@ -159,6 +159,14 @@ class _RouteScreenState extends State<RouteScreen> {
     final inicio = _inicio, fin = _fin;
     if (inicio == null || fin == null) return;
 
+    // Si la búsqueda anterior dejó un anuncio armado, se muestra ahora (antes
+    // de la nueva) y se ofrece quitar los anuncios.
+    if (await SearchGate().consumirAnuncioArmado()) {
+      final visto = await AdsService.instancia.mostrarSiListo();
+      if (visto && mounted) await _ofrecerQuitarAnuncios();
+      if (!mounted) return;
+    }
+
     setState(() {
       _calculando = true;
       _aviso = null;
@@ -238,15 +246,59 @@ class _RouteScreenState extends State<RouteScreen> {
         );
       }
       debugPrint('[ruta] total ${cron.elapsedMilliseconds} ms');
-      if (await SearchGate().registrarBusqueda()) {
-        await AdsService.instancia.mostrarSiListo();
-      }
+      // Deja un anuncio armado para la próxima búsqueda.
+      await SearchGate().armarAnuncio();
     } catch (e) {
       debugPrint('[ruta] error: $e');
       if (!mounted) return;
       setState(() => _aviso = _Aviso.red);
     } finally {
       if (mounted) setState(() => _calculando = false);
+    }
+  }
+
+  Future<void> _ofrecerQuitarAnuncios() async {
+    final l10n = AppLocalizations.of(context);
+    final quitar = await showModalBottomSheet<bool>(
+      context: context,
+      builder: (ctx) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(l10n.removeAdsPromptTitle,
+                  style: Theme.of(ctx).textTheme.titleMedium),
+              const SizedBox(height: 6),
+              Text(l10n.removeAdsPromptBody,
+                  style: Theme.of(ctx).textTheme.bodyMedium),
+              const SizedBox(height: 18),
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(ctx, false),
+                    child: Text(l10n.notNow),
+                  ),
+                  const Spacer(),
+                  FilledButton.tonal(
+                    onPressed: () => Navigator.pop(ctx, true),
+                    child: Text(l10n.removeAdsButton),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    if (quitar == true) {
+      await SearchGate().eliminarAnunciosMock();
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.adsRemovedMockDone)),
+        );
+      }
     }
   }
 
