@@ -37,5 +37,8 @@
   "aboutIntro": "Rutes a peu que busquen anar per l'ombra durant les hores de sol.",
   "creditMap": "Carrers i edificis: © col·laboradors d’OpenStreetMap (ODbL).",
   "creditTiles": "Tessel·les del mapa: OpenStreetMap.",
-  "creditSun": "Posició del sol: algorisme de Jean Meeus."
+  "creditSun": "Posició del sol: algorisme de Jean Meeus.",
+  "removeAdsButton": "Treu anuncis · 1,99 €",
+  "adsSectionTitle": "Anuncis",
+  "adsAlreadyRemoved": "Ja has tret els anuncis. Gràcies!"
 }

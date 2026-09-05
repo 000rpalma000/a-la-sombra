@@ -37,5 +37,8 @@
   "aboutIntro": "Itinéraires à pied qui cherchent à rester à l'ombre pendant la journée.",
   "creditMap": "Rues et bâtiments : © contributeurs OpenStreetMap (ODbL).",
   "creditTiles": "Tuiles de la carte : OpenStreetMap.",
-  "creditSun": "Position du soleil : algorithme de Jean Meeus."
+  "creditSun": "Position du soleil : algorithme de Jean Meeus.",
+  "removeAdsButton": "Supprimer les publicités · 1,99 €",
+  "adsSectionTitle": "Publicités",
+  "adsAlreadyRemoved": "Vous avez déjà supprimé les publicités. Merci !"
 }

@@ -37,5 +37,8 @@
   "aboutIntro": "Percorsi a piedi che cercano di restare all'ombra durante il giorno.",
   "creditMap": "Strade ed edifici: © contributori di OpenStreetMap (ODbL).",
   "creditTiles": "Riquadri della mappa: OpenStreetMap.",
-  "creditSun": "Posizione del sole: algoritmo di Jean Meeus."
+  "creditSun": "Posizione del sole: algoritmo di Jean Meeus.",
+  "removeAdsButton": "Rimuovi pubblicità · 1,99 €",
+  "adsSectionTitle": "Pubblicità",
+  "adsAlreadyRemoved": "Hai già rimosso la pubblicità. Grazie!"
 }

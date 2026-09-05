@@ -62,5 +62,8 @@
   "aboutIntro": "Rutas a pie que buscan ir por la sombra durante las horas de sol.",
   "creditMap": "Calles y edificios: © colaboradores de OpenStreetMap (ODbL).",
   "creditTiles": "Teselas del mapa: OpenStreetMap.",
-  "creditSun": "Posición del sol: algoritmo de Jean Meeus."
+  "creditSun": "Posición del sol: algoritmo de Jean Meeus.",
+  "removeAdsButton": "Quitar anuncios · 1,99 €",
+  "adsSectionTitle": "Anuncios",
+  "adsAlreadyRemoved": "Ya has quitado los anuncios. ¡Gracias!"
 }

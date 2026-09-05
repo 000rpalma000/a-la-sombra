@@ -331,6 +331,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Posición del sol: algoritmo de Jean Meeus.'**
   String get creditSun;
+
+  /// No description provided for @removeAdsButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar anuncios · 1,99 €'**
+  String get removeAdsButton;
+
+  /// No description provided for @adsSectionTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Anuncios'**
+  String get adsSectionTitle;
+
+  /// No description provided for @adsAlreadyRemoved.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya has quitado los anuncios. ¡Gracias!'**
+  String get adsAlreadyRemoved;
 }
 
 class _AppLocalizationsDelegate
