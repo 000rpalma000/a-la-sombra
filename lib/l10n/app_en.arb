@@ -40,5 +40,9 @@
   "creditSun": "Sun position: algorithm by Jean Meeus.",
   "removeAdsButton": "Remove ads · €1.99",
   "adsSectionTitle": "Ads",
-  "adsAlreadyRemoved": "You already removed ads. Thank you!"
+  "adsAlreadyRemoved": "You already removed ads. Thank you!",
+  "removeAdsPromptTitle": "No ads?",
+  "removeAdsPromptBody": "Remove them for good with a one-time payment.",
+  "notNow": "Not now",
+  "adsRemovedMockDone": "Ads removed (mock)."
 }

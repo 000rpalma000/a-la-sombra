@@ -149,4 +149,16 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get adsAlreadyRemoved => 'Ja has tret els anuncis. Gràcies!';
+
+  @override
+  String get removeAdsPromptTitle => 'Sense anuncis?';
+
+  @override
+  String get removeAdsPromptBody => 'Treu-los per sempre amb un únic pagament.';
+
+  @override
+  String get notNow => 'Ara no';
+
+  @override
+  String get adsRemovedMockDone => 'Anuncis trets (simulat).';
 }

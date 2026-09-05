@@ -149,4 +149,17 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get adsAlreadyRemoved => 'Hai già rimosso la pubblicità. Grazie!';
+
+  @override
+  String get removeAdsPromptTitle => 'Senza pubblicità?';
+
+  @override
+  String get removeAdsPromptBody =>
+      'Rimuovila per sempre con un pagamento unico.';
+
+  @override
+  String get notNow => 'Non ora';
+
+  @override
+  String get adsRemovedMockDone => 'Pubblicità rimossa (simulato).';
 }

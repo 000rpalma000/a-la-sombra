@@ -9,7 +9,12 @@
   "departNow": "Salir ahora",
   "departAt": "Salida {time}",
   "@departAt": {
-    "placeholders": { "time": { "type": "String", "example": "17:30" } }
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "17:30"
+      }
+    }
   },
   "changeTime": "Cambiar hora",
   "now": "Ahora",
@@ -19,30 +24,60 @@
   "sliderShortest": "ruta más corta",
   "sliderPreferShade": "prioriza sombra ×{factor}",
   "@sliderPreferShade": {
-    "placeholders": { "factor": { "type": "String", "example": "3.0" } }
+    "placeholders": {
+      "factor": {
+        "type": "String",
+        "example": "3.0"
+      }
+    }
   },
   "noRoute": "No se ha encontrado ninguna ruta peatonal entre esos puntos.",
   "nightShortest": "Es de noche: se muestra la ruta más corta.",
   "networkError": "No se han podido descargar los datos del mapa. Revisa la conexión e inténtalo de nuevo.",
   "statKm": "{value} km",
   "@statKm": {
-    "placeholders": { "value": { "type": "String", "example": "1,20" } }
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "1,20"
+      }
+    }
   },
   "statM": "{value} m",
   "@statM": {
-    "placeholders": { "value": { "type": "int", "example": "855" } }
+    "placeholders": {
+      "value": {
+        "type": "int",
+        "example": "855"
+      }
+    }
   },
   "statMinutes": "{value} min",
   "@statMinutes": {
-    "placeholders": { "value": { "type": "int", "example": "10" } }
+    "placeholders": {
+      "value": {
+        "type": "int",
+        "example": "10"
+      }
+    }
   },
   "statShade": "{percent} % en sombra",
   "@statShade": {
-    "placeholders": { "percent": { "type": "int", "example": "47" } }
+    "placeholders": {
+      "percent": {
+        "type": "int",
+        "example": "47"
+      }
+    }
   },
   "statDetour": "+{meters} m vs directa",
   "@statDetour": {
-    "placeholders": { "meters": { "type": "int", "example": "180" } }
+    "placeholders": {
+      "meters": {
+        "type": "int",
+        "example": "180"
+      }
+    }
   },
   "statCache": "caché",
   "calculating": "Calculando…",
@@ -53,7 +88,12 @@
   "legendSun": "Al sol",
   "routeTimeNow": "ahora, {time}",
   "@routeTimeNow": {
-    "placeholders": { "time": { "type": "String", "example": "12:10" } }
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "12:10"
+      }
+    }
   },
   "recalculate": "Recalcular",
   "about": "Acerca de",
@@ -65,5 +105,9 @@
   "creditSun": "Posición del sol: algoritmo de Jean Meeus.",
   "removeAdsButton": "Quitar anuncios · 1,99 €",
   "adsSectionTitle": "Anuncios",
-  "adsAlreadyRemoved": "Ya has quitado los anuncios. ¡Gracias!"
+  "adsAlreadyRemoved": "Ya has quitado los anuncios. ¡Gracias!",
+  "removeAdsPromptTitle": "¿Sin anuncios?",
+  "removeAdsPromptBody": "Quítalos para siempre con un único pago.",
+  "notNow": "Ahora no",
+  "adsRemovedMockDone": "Anuncios quitados (simulado)."
 }

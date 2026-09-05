@@ -40,5 +40,9 @@
   "creditSun": "Position du soleil : algorithme de Jean Meeus.",
   "removeAdsButton": "Supprimer les publicités · 1,99 €",
   "adsSectionTitle": "Publicités",
-  "adsAlreadyRemoved": "Vous avez déjà supprimé les publicités. Merci !"
+  "adsAlreadyRemoved": "Vous avez déjà supprimé les publicités. Merci !",
+  "removeAdsPromptTitle": "Sans publicités ?",
+  "removeAdsPromptBody": "Supprimez-les définitivement avec un paiement unique.",
+  "notNow": "Pas maintenant",
+  "adsRemovedMockDone": "Publicités supprimées (simulé)."
 }
