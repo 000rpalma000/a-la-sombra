@@ -44,7 +44,8 @@ class _RouteScreenState extends State<RouteScreen> {
   DateTime? _horaSalida;
 
   /// Preferencia de exposición: > 0 busca sombra, < 0 busca sol, 0 = más corta.
-  double _prioridad = 3;
+  double _prioridad = 4.5;
+  static const _prioridadMax = 8.0;
 
   bool _calculando = false;
   RouteResult? _ruta;
@@ -207,23 +208,28 @@ class _RouteScreenState extends State<RouteScreen> {
             prioridad: prioridad,
           );
 
-      // Pasada 1: banda alrededor de la línea recta.
-      var corredor = await _osm.descargarCorredor([inicio, fin]);
+      // Pasada 1: banda alrededor de la línea recta. Ancha, para que el
+      // enrutador pueda plantearse rodeos buscando sombra.
+      var corredor = await _osm.descargarCorredor(
+        [inicio, fin],
+        radioCallesM: 340,
+        radioEdificiosM: 400,
+      );
       var shadow = _shadow.construir(corredor.edificios, centro, hora);
       var ruta = calcular(corredor, shadow);
 
       // Pasada 2: si la ruta se sale de la zona con edificios, se vuelve a
       // descargar a lo largo de la ruta real y se recalcula, para que TODO el
       // recorrido tenga sus fachadas (y sus sombras).
-      const margenCoberturaM = 200.0;
+      const margenCoberturaM = 320.0;
       final seSale = ruta != null &&
           ruta.polyline.any((p) =>
               Geo.distanciaAPolilinea(p, [inicio, fin]) > margenCoberturaM);
       if (seSale) {
         final corredor2 = await _osm.descargarCorredor(
           ruta.polyline,
-          radioCallesM: 150,
-          radioEdificiosM: 210,
+          radioCallesM: 220,
+          radioEdificiosM: 300,
         );
         final shadow2 = _shadow.construir(corredor2.edificios, centro, hora);
         final ruta2 = calcular(corredor2, shadow2);
@@ -543,9 +549,9 @@ class _RouteScreenState extends State<RouteScreen> {
                   Expanded(
                     child: Slider(
                       value: _prioridad,
-                      min: -6,
-                      max: 6,
-                      divisions: 24,
+                      min: -_prioridadMax,
+                      max: _prioridadMax,
+                      divisions: 32,
                       label: _prioridad == 0
                           ? l10n.sliderShortest
                           : _prioridad > 0
