@@ -34,7 +34,7 @@
   "about": "Informazioni",
   "dataSources": "Fonti dei dati",
   "openSourceLicenses": "Licenze open source",
-  "aboutIntro": "Percorsi a piedi che cercano di restare all'ombra durante il giorno.",
+  "aboutIntro": "Percorsi a piedi che cercano l'ombra — o il sole — a seconda della stagione.",
   "creditMap": "Strade ed edifici: © contributori di OpenStreetMap (ODbL).",
   "creditTiles": "Riquadri della mappa: OpenStreetMap.",
   "creditSun": "Posizione del sole: algoritmo di Jean Meeus.",
@@ -44,5 +44,20 @@
   "removeAdsPromptTitle": "Senza pubblicità?",
   "removeAdsPromptBody": "Rimuovila per sempre con un pagamento unico.",
   "notNow": "Non ora",
-  "adsRemovedMockDone": "Pubblicità rimossa (simulato)."
+  "adsRemovedMockDone": "Pubblicità rimossa (simulato).",
+  "introTitle": "All'ombra o al sole?",
+  "introBody1": "Indica una partenza e una destinazione: calcola un percorso a piedi che sta il più possibile all'ombra… o al sole, se è quello che vuoi.",
+  "introBody2": "All'ombra d'estate, al sole d'inverno. Sposta la barra da un lato o dall'altro a seconda di cosa preferisci. Strade ed edifici: dati di OpenStreetMap.",
+  "introButton": "Ho capito",
+  "showIntro": "Rivedi l'introduzione",
+  "sunLabel": "Al sole",
+  "sliderPreferSun": "preferisci sole ×{factor}",
+  "@sliderPreferSun": {
+    "placeholders": {
+      "factor": {
+        "type": "String",
+        "example": "3.0"
+      }
+    }
+  }
 }

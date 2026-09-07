@@ -130,7 +130,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aboutIntro =>
-      'Itinéraires à pied qui cherchent à rester à l\'ombre pendant la journée.';
+      'Itinéraires à pied qui cherchent l\'ombre — ou le soleil — selon la saison.';
 
   @override
   String get creditMap =>
@@ -164,4 +164,29 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get adsRemovedMockDone => 'Publicités supprimées (simulé).';
+
+  @override
+  String get introTitle => 'À l\'ombre ou au soleil ?';
+
+  @override
+  String get introBody1 =>
+      'Indiquez un départ et une arrivée : l\'appli calcule un itinéraire à pied qui reste le plus possible à l\'ombre… ou au soleil, si c\'est ce que vous cherchez.';
+
+  @override
+  String get introBody2 =>
+      'À l\'ombre en été, au soleil en hiver. Déplacez le curseur d\'un côté ou de l\'autre selon votre envie. Rues et bâtiments : données d\'OpenStreetMap.';
+
+  @override
+  String get introButton => 'Compris';
+
+  @override
+  String get showIntro => 'Revoir l\'intro';
+
+  @override
+  String get sunLabel => 'Soleil';
+
+  @override
+  String sliderPreferSun(String factor) {
+    return 'privilégie le soleil ×$factor';
+  }
 }

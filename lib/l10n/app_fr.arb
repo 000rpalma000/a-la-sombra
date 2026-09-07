@@ -34,7 +34,7 @@
   "about": "À propos",
   "dataSources": "Sources de données",
   "openSourceLicenses": "Licences open source",
-  "aboutIntro": "Itinéraires à pied qui cherchent à rester à l'ombre pendant la journée.",
+  "aboutIntro": "Itinéraires à pied qui cherchent l'ombre — ou le soleil — selon la saison.",
   "creditMap": "Rues et bâtiments : © contributeurs OpenStreetMap (ODbL).",
   "creditTiles": "Tuiles de la carte : OpenStreetMap.",
   "creditSun": "Position du soleil : algorithme de Jean Meeus.",
@@ -44,5 +44,20 @@
   "removeAdsPromptTitle": "Sans publicités ?",
   "removeAdsPromptBody": "Supprimez-les définitivement avec un paiement unique.",
   "notNow": "Pas maintenant",
-  "adsRemovedMockDone": "Publicités supprimées (simulé)."
+  "adsRemovedMockDone": "Publicités supprimées (simulé).",
+  "introTitle": "À l'ombre ou au soleil ?",
+  "introBody1": "Indiquez un départ et une arrivée : l'appli calcule un itinéraire à pied qui reste le plus possible à l'ombre… ou au soleil, si c'est ce que vous cherchez.",
+  "introBody2": "À l'ombre en été, au soleil en hiver. Déplacez le curseur d'un côté ou de l'autre selon votre envie. Rues et bâtiments : données d'OpenStreetMap.",
+  "introButton": "Compris",
+  "showIntro": "Revoir l'intro",
+  "sunLabel": "Soleil",
+  "sliderPreferSun": "privilégie le soleil ×{factor}",
+  "@sliderPreferSun": {
+    "placeholders": {
+      "factor": {
+        "type": "String",
+        "example": "3.0"
+      }
+    }
+  }
 }

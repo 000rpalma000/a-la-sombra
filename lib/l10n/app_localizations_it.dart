@@ -129,7 +129,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get aboutIntro =>
-      'Percorsi a piedi che cercano di restare all\'ombra durante il giorno.';
+      'Percorsi a piedi che cercano l\'ombra — o il sole — a seconda della stagione.';
 
   @override
   String get creditMap =>
@@ -162,4 +162,29 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get adsRemovedMockDone => 'Pubblicità rimossa (simulato).';
+
+  @override
+  String get introTitle => 'All\'ombra o al sole?';
+
+  @override
+  String get introBody1 =>
+      'Indica una partenza e una destinazione: calcola un percorso a piedi che sta il più possibile all\'ombra… o al sole, se è quello che vuoi.';
+
+  @override
+  String get introBody2 =>
+      'All\'ombra d\'estate, al sole d\'inverno. Sposta la barra da un lato o dall\'altro a seconda di cosa preferisci. Strade ed edifici: dati di OpenStreetMap.';
+
+  @override
+  String get introButton => 'Ho capito';
+
+  @override
+  String get showIntro => 'Rivedi l\'introduzione';
+
+  @override
+  String get sunLabel => 'Al sole';
+
+  @override
+  String sliderPreferSun(String factor) {
+    return 'preferisci sole ×$factor';
+  }
 }

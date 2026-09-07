@@ -14,6 +14,7 @@ import '../services/osm_walk_service.dart';
 import '../services/router_service.dart';
 import '../services/search_gate.dart';
 import '../services/shadow_service.dart';
+import '../widgets/intro_sheet.dart';
 import 'about_screen.dart';
 
 class RouteScreen extends StatefulWidget {
@@ -41,7 +42,9 @@ class _RouteScreenState extends State<RouteScreen> {
 
   /// null = salir ahora.
   DateTime? _horaSalida;
-  double _prioridadSombra = 3;
+
+  /// Preferencia de exposición: > 0 busca sombra, < 0 busca sol, 0 = más corta.
+  double _prioridad = 3;
 
   bool _calculando = false;
   RouteResult? _ruta;
@@ -56,10 +59,14 @@ class _RouteScreenState extends State<RouteScreen> {
   /// mostrada queda obsoleta.
   DateTime? _seleccionAlCalcular;
 
+  /// Valor de [_prioridad] en el momento de calcular.
+  double? _prioridadAlCalcular;
+
   bool get _rutaObsoleta {
     if (_ruta == null) return false;
-    // Se cambió la hora de salida seleccionada.
+    // Se cambió la hora de salida o la preferencia sol/sombra.
     if (_horaSalida != _seleccionAlCalcular) return true;
+    if (_prioridad != _prioridadAlCalcular) return true;
     // Se calculó "para ahora" pero ha pasado bastante tiempo.
     if (_calculadaComoAhora && _horaCalculada != null) {
       return DateTime.now().difference(_horaCalculada!).inMinutes.abs() >= 15;
@@ -80,6 +87,7 @@ class _RouteScreenState extends State<RouteScreen> {
   void initState() {
     super.initState();
     AdsService.instancia.inicializar();
+    _quizaMostrarIntro();
     _location.ubicacionActual().then((u) {
       if (!mounted) return;
       setState(() => _centroInicial = u.punto);
@@ -91,6 +99,13 @@ class _RouteScreenState extends State<RouteScreen> {
         });
         _buscar();
       }
+    });
+  }
+
+  Future<void> _quizaMostrarIntro() async {
+    if (await introYaVisto() || !mounted) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) mostrarIntro(context);
     });
   }
 
@@ -183,12 +198,13 @@ class _RouteScreenState extends State<RouteScreen> {
         (inicio.longitude + fin.longitude) / 2,
       );
 
+      final prioridad = _prioridad;
       RouteResult? calcular(CorredorOsm c, ShadowMap shadow) => _router.calcular(
             graph: c.grafo,
             shadow: shadow,
             inicio: inicio,
             fin: fin,
-            prioridadSombra: _prioridadSombra,
+            prioridad: prioridad,
           );
 
       // Pasada 1: banda alrededor de la línea recta.
@@ -231,6 +247,7 @@ class _RouteScreenState extends State<RouteScreen> {
         _horaCalculada = hora;
         _calculadaComoAhora = eraAhora;
         _seleccionAlCalcular = seleccion;
+        _prioridadAlCalcular = prioridad;
         _aviso = ruta == null
             ? _Aviso.sinRuta
             : shadow.esDeNoche
@@ -522,18 +539,21 @@ class _RouteScreenState extends State<RouteScreen> {
               ),
               Row(
                 children: [
-                  Text(l10n.directLabel),
+                  Text(l10n.sunLabel),
                   Expanded(
                     child: Slider(
-                      value: _prioridadSombra,
-                      min: 0,
+                      value: _prioridad,
+                      min: -6,
                       max: 6,
-                      divisions: 12,
-                      label: _prioridadSombra == 0
+                      divisions: 24,
+                      label: _prioridad == 0
                           ? l10n.sliderShortest
-                          : l10n.sliderPreferShade(
-                              _prioridadSombra.toStringAsFixed(1)),
-                      onChanged: (v) => setState(() => _prioridadSombra = v),
+                          : _prioridad > 0
+                              ? l10n.sliderPreferShade(
+                                  _prioridad.toStringAsFixed(1))
+                              : l10n.sliderPreferSun(
+                                  _prioridad.abs().toStringAsFixed(1)),
+                      onChanged: (v) => setState(() => _prioridad = v),
                     ),
                   ),
                   Text(l10n.shadeLabel),

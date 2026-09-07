@@ -34,7 +34,7 @@
   "about": "Sobre l'app",
   "dataSources": "Fonts de dades",
   "openSourceLicenses": "Llicències de codi obert",
-  "aboutIntro": "Rutes a peu que busquen anar per l'ombra durant les hores de sol.",
+  "aboutIntro": "Rutes a peu que busquen l'ombra —o el sol— segons l'època de l'any.",
   "creditMap": "Carrers i edificis: © col·laboradors d’OpenStreetMap (ODbL).",
   "creditTiles": "Tessel·les del mapa: OpenStreetMap.",
   "creditSun": "Posició del sol: algorisme de Jean Meeus.",
@@ -44,5 +44,20 @@
   "removeAdsPromptTitle": "Sense anuncis?",
   "removeAdsPromptBody": "Treu-los per sempre amb un únic pagament.",
   "notNow": "Ara no",
-  "adsRemovedMockDone": "Anuncis trets (simulat)."
+  "adsRemovedMockDone": "Anuncis trets (simulat).",
+  "introTitle": "A l'ombra o al sol?",
+  "introBody1": "Marca un inici i una destinació: et calcula una ruta a peu que va tant com pot per l'ombra… o pel sol, si el que vols és que et toqui.",
+  "introBody2": "A l'ombra a l'estiu; al sol a l'hivern. Mou la barra cap a un costat o cap a l'altre segons et vingui de gust. Carrers i edificis: dades d'OpenStreetMap.",
+  "introButton": "Entesos",
+  "showIntro": "Mostra la introducció",
+  "sunLabel": "Al sol",
+  "sliderPreferSun": "prioritza sol ×{factor}",
+  "@sliderPreferSun": {
+    "placeholders": {
+      "factor": {
+        "type": "String",
+        "example": "3.0"
+      }
+    }
+  }
 }
