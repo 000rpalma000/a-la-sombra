@@ -1,30 +1,32 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Ritmo de anuncios en "A la sombra": tras **cada** búsqueda de ruta se deja
-/// un anuncio "armado", y se muestra cuando el usuario va a hacer la
-/// siguiente. Estado persistente (sobrevive a cerrar la app).
+/// Ritmo de anuncios en "A la sombra": la **primera** búsqueda de la sesión no
+/// lleva anuncio; a partir de ahí, cada nueva búsqueda muestra un anuncio antes
+/// de calcular. El "armado" vive en memoria, así que al reabrir la app se
+/// vuelve a empezar sin anuncio en la primera.
 ///
-/// Comprar "quitar anuncios" pone [anunciosEliminados] a `true` para siempre.
-/// De momento la "compra" es un mock local; el cobro real (in_app_purchase +
-/// producto en las tiendas) se conecta más adelante sin cambiar esta clase.
+/// Comprar "quitar anuncios" (persistente) desactiva todo para siempre.
 class SearchGate {
-  static const _kArmado = 'search_gate_armado';
   static const _kSinAnuncios = 'search_gate_sin_anuncios';
+
+  /// En memoria, por sesión.
+  static bool _armado = false;
 
   /// Tras completar una búsqueda: deja un anuncio pendiente para la próxima.
   Future<void> armarAnuncio() async {
-    final sp = await SharedPreferences.getInstance();
-    if (sp.getBool(_kSinAnuncios) ?? false) return;
-    await sp.setBool(_kArmado, true);
+    if (await anunciosEliminados()) return;
+    _armado = true;
   }
 
   /// Al empezar otra búsqueda: ¿hay un anuncio armado? Lo consume y lo indica.
   Future<bool> consumirAnuncioArmado() async {
-    final sp = await SharedPreferences.getInstance();
-    if (sp.getBool(_kSinAnuncios) ?? false) return false;
-    final armado = sp.getBool(_kArmado) ?? false;
-    if (armado) await sp.setBool(_kArmado, false);
-    return armado;
+    if (await anunciosEliminados()) {
+      _armado = false;
+      return false;
+    }
+    if (!_armado) return false;
+    _armado = false;
+    return true;
   }
 
   Future<bool> anunciosEliminados() async {
