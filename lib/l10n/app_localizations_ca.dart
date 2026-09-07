@@ -129,7 +129,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get aboutIntro =>
-      'Rutes a peu que busquen anar per l\'ombra durant les hores de sol.';
+      'Rutes a peu que busquen l\'ombra —o el sol— segons l\'època de l\'any.';
 
   @override
   String get creditMap =>
@@ -161,4 +161,29 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get adsRemovedMockDone => 'Anuncis trets (simulat).';
+
+  @override
+  String get introTitle => 'A l\'ombra o al sol?';
+
+  @override
+  String get introBody1 =>
+      'Marca un inici i una destinació: et calcula una ruta a peu que va tant com pot per l\'ombra… o pel sol, si el que vols és que et toqui.';
+
+  @override
+  String get introBody2 =>
+      'A l\'ombra a l\'estiu; al sol a l\'hivern. Mou la barra cap a un costat o cap a l\'altre segons et vingui de gust. Carrers i edificis: dades d\'OpenStreetMap.';
+
+  @override
+  String get introButton => 'Entesos';
+
+  @override
+  String get showIntro => 'Mostra la introducció';
+
+  @override
+  String get sunLabel => 'Al sol';
+
+  @override
+  String sliderPreferSun(String factor) {
+    return 'prioritza sol ×$factor';
+  }
 }

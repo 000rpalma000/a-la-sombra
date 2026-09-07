@@ -130,7 +130,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get aboutIntro =>
-      'Rutas a pie que buscan ir por la sombra durante las horas de sol.';
+      'Rutas a pie que buscan la sombra —o el sol— según la época del año.';
 
   @override
   String get creditMap =>
@@ -162,4 +162,29 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get adsRemovedMockDone => 'Anuncios quitados (simulado).';
+
+  @override
+  String get introTitle => '¿A la sombra o al sol?';
+
+  @override
+  String get introBody1 =>
+      'Marca un inicio y un destino: te calcula una ruta a pie que va lo más posible por la sombra… o por el sol, si lo que quieres es que te dé.';
+
+  @override
+  String get introBody2 =>
+      'A la sombra en verano; al sol en invierno. Mueve la barra hacia un lado u otro según te apetezca. Calles y edificios: datos de OpenStreetMap.';
+
+  @override
+  String get introButton => 'Entendido';
+
+  @override
+  String get showIntro => 'Ver la introducción';
+
+  @override
+  String get sunLabel => 'Al sol';
+
+  @override
+  String sliderPreferSun(String factor) {
+    return 'prioriza sol ×$factor';
+  }
 }

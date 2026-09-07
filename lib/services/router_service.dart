@@ -5,12 +5,15 @@ import '../models/route_result.dart';
 import '../models/shadow_map.dart';
 import '../models/walk_graph.dart';
 
-/// Calcula una ruta a pie que prioriza ir por la sombra.
+/// Calcula una ruta a pie que prioriza ir por la sombra **o por el sol**.
 ///
-/// Coste de cada tramo: `longitud * (1 + w * fracciónAlSol)`, con `w` =
-/// [prioridadSombra]. Con `w = 0` sale la ruta más corta; cuanto mayor es `w`,
-/// más desvío se acepta a cambio de sombra. De noche todos los tramos valen
-/// igual (fracciónAlSol = 0) y sale la más corta.
+/// Coste de cada tramo: `longitud * (1 + |w| * exposición)`, con `w` =
+/// [prioridad]:
+///  * `w > 0` → busca sombra: `exposición` = fracción del tramo al sol.
+///  * `w < 0` → busca sol: `exposición` = fracción del tramo en sombra.
+///  * `w = 0` → ruta más corta.
+/// Cuanto mayor es `|w|`, más desvío se acepta. De noche todos los tramos
+/// tienen la misma exposición y sale la más corta en cualquier caso.
 class RouterService {
   const RouterService();
 
@@ -19,7 +22,7 @@ class RouterService {
     required ShadowMap shadow,
     required LatLng inicio,
     required LatLng fin,
-    double prioridadSombra = 3,
+    double prioridad = 3,
   }) {
     if (graph.vacio) return null;
     final origen = graph.nodoMasCercano(inicio);
@@ -32,22 +35,28 @@ class RouterService {
       e.sunExposedFraction = 1 - shadow.fraccionEnSombra(muestras);
     }
 
-    final conSombra = _astar(
+    final w = prioridad.abs();
+    final buscaSol = prioridad < 0;
+    final ruta = _astar(
       graph,
       origen.id,
       destino.id,
-      (e) => e.lengthM * (1 + prioridadSombra * e.sunExposedFraction),
+      (e) {
+        final exposicion =
+            buscaSol ? 1 - e.sunExposedFraction : e.sunExposedFraction;
+        return e.lengthM * (1 + w * exposicion);
+      },
     );
-    if (conSombra == null) return null;
+    if (ruta == null) return null;
 
     final masCorta = _astar(graph, origen.id, destino.id, (e) => e.lengthM);
 
     return _montarResultado(
       graph,
-      conSombra,
+      ruta,
       origen.id,
       shortestDistanceM: masCorta == null
-          ? _distanciaDeCamino(graph, conSombra, origen.id)
+          ? _distanciaDeCamino(graph, ruta, origen.id)
           : _distanciaDeCamino(graph, masCorta, origen.id),
     );
   }

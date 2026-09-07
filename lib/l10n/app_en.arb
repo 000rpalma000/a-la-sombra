@@ -34,7 +34,7 @@
   "about": "About",
   "dataSources": "Data sources",
   "openSourceLicenses": "Open-source licenses",
-  "aboutIntro": "Walking routes that try to stay in the shade during daylight.",
+  "aboutIntro": "Walking routes that seek shade — or sun — depending on the season.",
   "creditMap": "Streets and buildings: © OpenStreetMap contributors (ODbL).",
   "creditTiles": "Map tiles: OpenStreetMap.",
   "creditSun": "Sun position: algorithm by Jean Meeus.",
@@ -44,5 +44,20 @@
   "removeAdsPromptTitle": "No ads?",
   "removeAdsPromptBody": "Remove them for good with a one-time payment.",
   "notNow": "Not now",
-  "adsRemovedMockDone": "Ads removed (mock)."
+  "adsRemovedMockDone": "Ads removed (mock).",
+  "introTitle": "Shade or sun?",
+  "introBody1": "Set a start and a destination: it works out a walking route that stays in the shade as much as possible — or in the sun, if that's what you want.",
+  "introBody2": "Shade in summer, sun in winter. Slide the bar one way or the other depending on what you fancy. Streets and buildings: data from OpenStreetMap.",
+  "introButton": "Got it",
+  "showIntro": "Show the intro",
+  "sunLabel": "Sun",
+  "sliderPreferSun": "prefer sun ×{factor}",
+  "@sliderPreferSun": {
+    "placeholders": {
+      "factor": {
+        "type": "String",
+        "example": "3.0"
+      }
+    }
+  }
 }

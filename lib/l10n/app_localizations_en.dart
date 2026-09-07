@@ -129,7 +129,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aboutIntro =>
-      'Walking routes that try to stay in the shade during daylight.';
+      'Walking routes that seek shade — or sun — depending on the season.';
 
   @override
   String get creditMap =>
@@ -162,4 +162,29 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get adsRemovedMockDone => 'Ads removed (mock).';
+
+  @override
+  String get introTitle => 'Shade or sun?';
+
+  @override
+  String get introBody1 =>
+      'Set a start and a destination: it works out a walking route that stays in the shade as much as possible — or in the sun, if that\'s what you want.';
+
+  @override
+  String get introBody2 =>
+      'Shade in summer, sun in winter. Slide the bar one way or the other depending on what you fancy. Streets and buildings: data from OpenStreetMap.';
+
+  @override
+  String get introButton => 'Got it';
+
+  @override
+  String get showIntro => 'Show the intro';
+
+  @override
+  String get sunLabel => 'Sun';
+
+  @override
+  String sliderPreferSun(String factor) {
+    return 'prefer sun ×$factor';
+  }
 }

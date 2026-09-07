@@ -99,7 +99,7 @@
   "about": "Acerca de",
   "dataSources": "Fuentes de datos",
   "openSourceLicenses": "Licencias de código abierto",
-  "aboutIntro": "Rutas a pie que buscan ir por la sombra durante las horas de sol.",
+  "aboutIntro": "Rutas a pie que buscan la sombra —o el sol— según la época del año.",
   "creditMap": "Calles y edificios: © colaboradores de OpenStreetMap (ODbL).",
   "creditTiles": "Teselas del mapa: OpenStreetMap.",
   "creditSun": "Posición del sol: algoritmo de Jean Meeus.",
@@ -109,5 +109,20 @@
   "removeAdsPromptTitle": "¿Sin anuncios?",
   "removeAdsPromptBody": "Quítalos para siempre con un único pago.",
   "notNow": "Ahora no",
-  "adsRemovedMockDone": "Anuncios quitados (simulado)."
+  "adsRemovedMockDone": "Anuncios quitados (simulado).",
+  "introTitle": "¿A la sombra o al sol?",
+  "introBody1": "Marca un inicio y un destino: te calcula una ruta a pie que va lo más posible por la sombra… o por el sol, si lo que quieres es que te dé.",
+  "introBody2": "A la sombra en verano; al sol en invierno. Mueve la barra hacia un lado u otro según te apetezca. Calles y edificios: datos de OpenStreetMap.",
+  "introButton": "Entendido",
+  "showIntro": "Ver la introducción",
+  "sunLabel": "Al sol",
+  "sliderPreferSun": "prioriza sol ×{factor}",
+  "@sliderPreferSun": {
+    "placeholders": {
+      "factor": {
+        "type": "String",
+        "example": "3.0"
+      }
+    }
+  }
 }

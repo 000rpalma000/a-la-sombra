@@ -311,7 +311,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutIntro.
   ///
   /// In es, this message translates to:
-  /// **'Rutas a pie que buscan ir por la sombra durante las horas de sol.'**
+  /// **'Rutas a pie que buscan la sombra —o el sol— según la época del año.'**
   String get aboutIntro;
 
   /// No description provided for @creditMap.
@@ -373,6 +373,48 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Anuncios quitados (simulado).'**
   String get adsRemovedMockDone;
+
+  /// No description provided for @introTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿A la sombra o al sol?'**
+  String get introTitle;
+
+  /// No description provided for @introBody1.
+  ///
+  /// In es, this message translates to:
+  /// **'Marca un inicio y un destino: te calcula una ruta a pie que va lo más posible por la sombra… o por el sol, si lo que quieres es que te dé.'**
+  String get introBody1;
+
+  /// No description provided for @introBody2.
+  ///
+  /// In es, this message translates to:
+  /// **'A la sombra en verano; al sol en invierno. Mueve la barra hacia un lado u otro según te apetezca. Calles y edificios: datos de OpenStreetMap.'**
+  String get introBody2;
+
+  /// No description provided for @introButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Entendido'**
+  String get introButton;
+
+  /// No description provided for @showIntro.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver la introducción'**
+  String get showIntro;
+
+  /// No description provided for @sunLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Al sol'**
+  String get sunLabel;
+
+  /// No description provided for @sliderPreferSun.
+  ///
+  /// In es, this message translates to:
+  /// **'prioriza sol ×{factor}'**
+  String sliderPreferSun(String factor);
 }
 
 class _AppLocalizationsDelegate
