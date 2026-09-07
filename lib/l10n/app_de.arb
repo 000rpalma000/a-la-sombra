@@ -1,0 +1,128 @@
+{
+  "@@locale": "de",
+  "appTitle": "A la sombra",
+  "@appTitle": {},
+  "exampleRoute": "Beispielroute",
+  "clearPoints": "Punkte löschen",
+  "tapForStart": "Tippe auf die Karte, um den Start zu setzen.",
+  "tapForEnd": "Jetzt tippe auf das Ziel.",
+  "departNow": "Jetzt losgehen",
+  "departAt": "Abfahrt {time}",
+  "@departAt": {
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "17:30"
+      }
+    }
+  },
+  "changeTime": "Zeit ändern",
+  "now": "Jetzt",
+  "departureTimeTitle": "Abfahrtszeit",
+  "directLabel": "Direkt",
+  "shadeLabel": "Schatten",
+  "sliderShortest": "kürzeste Route",
+  "sliderPreferShade": "Schatten bevorzugen ×{factor}",
+  "@sliderPreferShade": {
+    "placeholders": {
+      "factor": {
+        "type": "String",
+        "example": "3.0"
+      }
+    }
+  },
+  "noRoute": "Zwischen diesen Punkten wurde kein Fußweg gefunden.",
+  "nightShortest": "Es ist Nacht: die kürzeste Route wird angezeigt.",
+  "networkError": "Kartendaten konnten nicht geladen werden. Prüfe die Verbindung und versuche es erneut.",
+  "statKm": "{value} km",
+  "@statKm": {
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "1,20"
+      }
+    }
+  },
+  "statM": "{value} m",
+  "@statM": {
+    "placeholders": {
+      "value": {
+        "type": "int",
+        "example": "855"
+      }
+    }
+  },
+  "statMinutes": "{value} Min.",
+  "@statMinutes": {
+    "placeholders": {
+      "value": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "statShade": "{percent} % im Schatten",
+  "@statShade": {
+    "placeholders": {
+      "percent": {
+        "type": "int",
+        "example": "47"
+      }
+    }
+  },
+  "statDetour": "+{meters} m ggü. direkt",
+  "@statDetour": {
+    "placeholders": {
+      "meters": {
+        "type": "int",
+        "example": "180"
+      }
+    }
+  },
+  "statCache": "Cache",
+  "calculating": "Berechnung…",
+  "searchRoute": "Route suchen",
+  "language": "Sprache",
+  "languageSystem": "Automatisch (System)",
+  "legendShade": "Im Schatten",
+  "legendSun": "In der Sonne",
+  "routeTimeNow": "jetzt, {time}",
+  "@routeTimeNow": {
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "12:10"
+      }
+    }
+  },
+  "recalculate": "Neu berechnen",
+  "about": "Über die App",
+  "dataSources": "Datenquellen",
+  "openSourceLicenses": "Open-Source-Lizenzen",
+  "aboutIntro": "Fußrouten, die je nach Jahreszeit den Schatten – oder die Sonne – suchen.",
+  "creditMap": "Straßen und Gebäude: © OpenStreetMap-Mitwirkende (ODbL).",
+  "creditTiles": "Kartenkacheln: OpenStreetMap.",
+  "creditSun": "Sonnenstand: Algorithmus von Jean Meeus.",
+  "removeAdsButton": "Werbung entfernen · 1,99 €",
+  "adsSectionTitle": "Werbung",
+  "adsAlreadyRemoved": "Du hast die Werbung bereits entfernt. Danke!",
+  "removeAdsPromptTitle": "Ohne Werbung?",
+  "removeAdsPromptBody": "Entferne sie dauerhaft mit einer einmaligen Zahlung.",
+  "notNow": "Jetzt nicht",
+  "adsRemovedMockDone": "Werbung entfernt (simuliert).",
+  "introTitle": "Schatten oder Sonne?",
+  "introBody1": "Setze Start und Ziel: Die App berechnet einen Fußweg, der so weit wie möglich im Schatten bleibt – oder in der Sonne, wenn du das möchtest.",
+  "introBody2": "Schatten im Sommer, Sonne im Winter. Schiebe den Regler in die eine oder andere Richtung, je nach Lust. Straßen und Gebäude: Daten von OpenStreetMap.",
+  "introButton": "Verstanden",
+  "showIntro": "Einführung anzeigen",
+  "sunLabel": "Sonne",
+  "sliderPreferSun": "Sonne bevorzugen ×{factor}",
+  "@sliderPreferSun": {
+    "placeholders": {
+      "factor": {
+        "type": "String",
+        "example": "3.0"
+      }
+    }
+  }
+}
