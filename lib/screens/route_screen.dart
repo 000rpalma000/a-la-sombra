@@ -103,8 +103,8 @@ class _RouteScreenState extends State<RouteScreen> {
     });
   }
 
-  Future<void> _quizaMostrarIntro() async {
-    if (await introYaVisto() || !mounted) return;
+  void _quizaMostrarIntro() {
+    // La introducción sale en cada apertura.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) mostrarIntro(context);
     });
