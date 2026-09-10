@@ -37,6 +37,9 @@ class _RouteScreenState extends State<RouteScreen> {
   final _router = const RouterService();
 
   LatLng _centroInicial = LocationService.fallback;
+
+  /// Ubicación actual del usuario (null hasta que se obtiene).
+  LatLng? _miUbicacion;
   LatLng? _inicio;
   LatLng? _fin;
 
@@ -91,7 +94,10 @@ class _RouteScreenState extends State<RouteScreen> {
     _quizaMostrarIntro();
     _location.ubicacionActual().then((u) {
       if (!mounted) return;
-      setState(() => _centroInicial = u.punto);
+      setState(() {
+        _centroInicial = u.punto;
+        _miUbicacion = u.punto;
+      });
       _mapController.move(u.punto, 15);
       if (_demoAlArrancar) {
         setState(() {
@@ -379,6 +385,16 @@ class _RouteScreenState extends State<RouteScreen> {
             child: Stack(
               children: [
                 _mapa(),
+                if (_miUbicacion != null)
+                  Positioned(
+                    top: 12,
+                    right: 12,
+                    child: FloatingActionButton.small(
+                      heroTag: 'miUbicacion',
+                      onPressed: _centrarEnMiUbicacion,
+                      child: const Icon(Icons.my_location),
+                    ),
+                  ),
                 if (_ruta != null)
                   Positioned(
                     left: 8,
@@ -439,6 +455,18 @@ class _RouteScreenState extends State<RouteScreen> {
     );
   }
 
+  void _centrarEnMiUbicacion() {
+    final u = _miUbicacion;
+    if (u == null) return;
+    double z;
+    try {
+      z = _mapController.camera.zoom;
+    } catch (_) {
+      z = 15;
+    }
+    _mapController.move(u, z < 14 ? 15 : z);
+  }
+
   Widget _mapa() {
     return FlutterMap(
       mapController: _mapController,
@@ -482,6 +510,28 @@ class _RouteScreenState extends State<RouteScreen> {
           ),
         MarkerLayer(
           markers: [
+            if (_miUbicacion != null)
+              Marker(
+                point: _miUbicacion!,
+                width: 24,
+                height: 24,
+                child: const DecoratedBox(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFF1A73E8),
+                    border: Border.fromBorderSide(
+                      BorderSide(color: Colors.white, width: 3.5),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0x33000000),
+                        blurRadius: 4,
+                        offset: Offset(0, 1),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             if (_inicio != null)
               Marker(
                 point: _inicio!,
