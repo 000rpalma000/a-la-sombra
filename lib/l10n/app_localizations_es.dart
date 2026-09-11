@@ -187,4 +187,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String sliderPreferSun(String factor) {
     return 'prioriza sol ×$factor';
   }
+
+  @override
+  String get shareApp => 'Compartir esta app';
 }
