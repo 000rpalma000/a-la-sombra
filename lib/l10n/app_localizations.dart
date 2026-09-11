@@ -417,6 +417,12 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'prioriza sol ×{factor}'**
   String sliderPreferSun(String factor);
+
+  /// No description provided for @shareApp.
+  ///
+  /// In es, this message translates to:
+  /// **'Compartir esta app'**
+  String get shareApp;
 }
 
 class _AppLocalizationsDelegate
