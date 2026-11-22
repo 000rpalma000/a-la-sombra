@@ -190,4 +190,22 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get shareApp => 'Condividi questa app';
+
+  @override
+  String get locationOff =>
+      'La localizzazione è disattivata. Mostro il centro di Barcellona.';
+
+  @override
+  String get locationDenied =>
+      'Nessun permesso di posizione. Mostro il centro di Barcellona.';
+
+  @override
+  String get locationNoSignal =>
+      'Impossibile ottenere la tua posizione. Mostro il centro di Barcellona.';
+
+  @override
+  String get openSettings => 'Impostazioni';
+
+  @override
+  String get retry => 'Riprova';
 }

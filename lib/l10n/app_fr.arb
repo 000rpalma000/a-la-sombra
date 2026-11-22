@@ -60,5 +60,10 @@
       }
     }
   },
-  "shareApp": "Partager cette appli"
+  "shareApp": "Partager cette appli",
+  "locationOff": "La localisation est désactivée. Affichage du centre de Barcelone.",
+  "locationDenied": "Pas d'autorisation de localisation. Affichage du centre de Barcelone.",
+  "locationNoSignal": "Impossible d'obtenir votre position. Affichage du centre de Barcelone.",
+  "openSettings": "Réglages",
+  "retry": "Réessayer"
 }

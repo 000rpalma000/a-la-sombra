@@ -125,5 +125,10 @@
       }
     }
   },
-  "shareApp": "App teilen"
+  "shareApp": "App teilen",
+  "locationOff": "Die Ortungsdienste sind aus. Ich zeige das Zentrum von Barcelona.",
+  "locationDenied": "Keine Standortberechtigung. Ich zeige das Zentrum von Barcelona.",
+  "locationNoSignal": "Dein Standort konnte nicht ermittelt werden. Ich zeige das Zentrum von Barcelona.",
+  "openSettings": "Einstellungen",
+  "retry": "Erneut versuchen"
 }

@@ -60,5 +60,10 @@
       }
     }
   },
-  "shareApp": "Comparteix aquesta app"
+  "shareApp": "Comparteix aquesta app",
+  "locationOff": "La localització del mòbil està apagada. Et mostro el centre de Barcelona.",
+  "locationDenied": "Sense permís d'ubicació. Et mostro el centre de Barcelona.",
+  "locationNoSignal": "No s'ha pogut obtenir la teva ubicació. Et mostro el centre de Barcelona.",
+  "openSettings": "Ajustos",
+  "retry": "Torna-ho a provar"
 }

@@ -190,4 +190,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get shareApp => 'Share this app';
+
+  @override
+  String get locationOff =>
+      'Location services are off. Showing central Barcelona.';
+
+  @override
+  String get locationDenied =>
+      'No location permission. Showing central Barcelona.';
+
+  @override
+  String get locationNoSignal =>
+      'Couldn\'t get your location. Showing central Barcelona.';
+
+  @override
+  String get openSettings => 'Settings';
+
+  @override
+  String get retry => 'Retry';
 }

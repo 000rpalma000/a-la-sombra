@@ -192,4 +192,22 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get shareApp => 'Partager cette appli';
+
+  @override
+  String get locationOff =>
+      'La localisation est désactivée. Affichage du centre de Barcelone.';
+
+  @override
+  String get locationDenied =>
+      'Pas d\'autorisation de localisation. Affichage du centre de Barcelone.';
+
+  @override
+  String get locationNoSignal =>
+      'Impossible d\'obtenir votre position. Affichage du centre de Barcelone.';
+
+  @override
+  String get openSettings => 'Réglages';
+
+  @override
+  String get retry => 'Réessayer';
 }

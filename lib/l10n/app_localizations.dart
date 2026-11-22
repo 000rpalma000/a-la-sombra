@@ -423,6 +423,36 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Compartir esta app'**
   String get shareApp;
+
+  /// No description provided for @locationOff.
+  ///
+  /// In es, this message translates to:
+  /// **'La localización del móvil está apagada. Te muestro el centro de Barcelona.'**
+  String get locationOff;
+
+  /// No description provided for @locationDenied.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin permiso de ubicación. Te muestro el centro de Barcelona.'**
+  String get locationDenied;
+
+  /// No description provided for @locationNoSignal.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo obtener tu ubicación. Te muestro el centro de Barcelona.'**
+  String get locationNoSignal;
+
+  /// No description provided for @openSettings.
+  ///
+  /// In es, this message translates to:
+  /// **'Ajustes'**
+  String get openSettings;
+
+  /// No description provided for @retry.
+  ///
+  /// In es, this message translates to:
+  /// **'Reintentar'**
+  String get retry;
 }
 
 class _AppLocalizationsDelegate

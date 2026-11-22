@@ -60,5 +60,10 @@
       }
     }
   },
-  "shareApp": "Condividi questa app"
+  "shareApp": "Condividi questa app",
+  "locationOff": "La localizzazione è disattivata. Mostro il centro di Barcellona.",
+  "locationDenied": "Nessun permesso di posizione. Mostro il centro di Barcellona.",
+  "locationNoSignal": "Impossibile ottenere la tua posizione. Mostro il centro di Barcellona.",
+  "openSettings": "Impostazioni",
+  "retry": "Riprova"
 }

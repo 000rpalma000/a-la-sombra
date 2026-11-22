@@ -7,12 +7,10 @@ import '../l10n/app_localizations.dart';
 import '../models/geo.dart';
 import '../models/route_result.dart';
 import '../models/shadow_map.dart';
-import '../services/ads_service.dart';
 import '../services/locale_controller.dart';
 import '../services/location_service.dart';
 import '../services/osm_walk_service.dart';
 import '../services/router_service.dart';
-import '../services/search_gate.dart';
 import '../services/shadow_service.dart';
 import '../widgets/intro_sheet.dart';
 import 'about_screen.dart';
@@ -90,15 +88,16 @@ class _RouteScreenState extends State<RouteScreen> {
   @override
   void initState() {
     super.initState();
-    AdsService.instancia.inicializar();
     _quizaMostrarIntro();
     _location.ubicacionActual().then((u) {
       if (!mounted) return;
       setState(() {
         _centroInicial = u.punto;
-        _miUbicacion = u.punto;
+        // Solo se marca "estás aquí" si la posición es real, no el respaldo.
+        _miUbicacion = u.esReal ? u.punto : null;
       });
       _mapController.move(u.punto, 15);
+      if (u.motivo != null) _avisarSinUbicacion(u.motivo!);
       if (_demoAlArrancar) {
         setState(() {
           _inicio = LatLng(41.3874, 2.1686); // Pl. Catalunya
@@ -180,14 +179,6 @@ class _RouteScreenState extends State<RouteScreen> {
   Future<void> _buscar() async {
     final inicio = _inicio, fin = _fin;
     if (inicio == null || fin == null) return;
-
-    // Si la búsqueda anterior dejó un anuncio armado, se muestra ahora (antes
-    // de la nueva) y se ofrece quitar los anuncios.
-    if (await SearchGate().consumirAnuncioArmado()) {
-      final visto = await AdsService.instancia.mostrarSiListo();
-      if (visto && mounted) await _ofrecerQuitarAnuncios();
-      if (!mounted) return;
-    }
 
     setState(() {
       _calculando = true;
@@ -275,59 +266,12 @@ class _RouteScreenState extends State<RouteScreen> {
         );
       }
       debugPrint('[ruta] total ${cron.elapsedMilliseconds} ms');
-      // Deja un anuncio armado para la próxima búsqueda.
-      await SearchGate().armarAnuncio();
     } catch (e) {
       debugPrint('[ruta] error: $e');
       if (!mounted) return;
       setState(() => _aviso = _Aviso.red);
     } finally {
       if (mounted) setState(() => _calculando = false);
-    }
-  }
-
-  Future<void> _ofrecerQuitarAnuncios() async {
-    final l10n = AppLocalizations.of(context);
-    final quitar = await showModalBottomSheet<bool>(
-      context: context,
-      builder: (ctx) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(l10n.removeAdsPromptTitle,
-                  style: Theme.of(ctx).textTheme.titleMedium),
-              const SizedBox(height: 6),
-              Text(l10n.removeAdsPromptBody,
-                  style: Theme.of(ctx).textTheme.bodyMedium),
-              const SizedBox(height: 18),
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(ctx, false),
-                    child: Text(l10n.notNow),
-                  ),
-                  const Spacer(),
-                  FilledButton.tonal(
-                    onPressed: () => Navigator.pop(ctx, true),
-                    child: Text(l10n.removeAdsButton),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-    if (quitar == true) {
-      await SearchGate().eliminarAnunciosMock();
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.adsRemovedMockDone)),
-        );
-      }
     }
   }
 
@@ -385,16 +329,18 @@ class _RouteScreenState extends State<RouteScreen> {
             child: Stack(
               children: [
                 _mapa(),
-                if (_miUbicacion != null)
-                  Positioned(
-                    top: 12,
-                    right: 12,
-                    child: FloatingActionButton.small(
-                      heroTag: 'miUbicacion',
-                      onPressed: _centrarEnMiUbicacion,
-                      child: const Icon(Icons.my_location),
-                    ),
+                // Siempre visible: si aún no hay ubicación real, reintenta.
+                Positioned(
+                  top: 12,
+                  right: 12,
+                  child: FloatingActionButton.small(
+                    heroTag: 'miUbicacion',
+                    onPressed: _centrarEnMiUbicacion,
+                    child: Icon(_miUbicacion != null
+                        ? Icons.my_location
+                        : Icons.location_searching),
                   ),
+                ),
                 if (_ruta != null)
                   Positioned(
                     left: 8,
@@ -455,9 +401,45 @@ class _RouteScreenState extends State<RouteScreen> {
     );
   }
 
+  void _avisarSinUbicacion(MotivoSinUbicacion motivo) {
+    if (!mounted) return;
+    final l10n = AppLocalizations.of(context);
+    final texto = switch (motivo) {
+      MotivoSinUbicacion.servicioApagado => l10n.locationOff,
+      MotivoSinUbicacion.sinPermiso => l10n.locationDenied,
+      MotivoSinUbicacion.sinSenal => l10n.locationNoSignal,
+    };
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(texto),
+        duration: const Duration(seconds: 6),
+        action: motivo == MotivoSinUbicacion.sinSenal
+            ? SnackBarAction(label: l10n.retry, onPressed: _reintentarUbicacion)
+            : SnackBarAction(
+                label: l10n.openSettings,
+                onPressed: () => _location.abrirAjustes(motivo),
+              ),
+      ),
+    );
+  }
+
+  Future<void> _reintentarUbicacion() async {
+    final u = await _location.ubicacionActual();
+    if (!mounted) return;
+    if (!u.esReal) {
+      _avisarSinUbicacion(u.motivo!);
+      return;
+    }
+    setState(() => _miUbicacion = u.punto);
+    _centrarEnMiUbicacion();
+  }
+
   void _centrarEnMiUbicacion() {
     final u = _miUbicacion;
-    if (u == null) return;
+    if (u == null) {
+      _reintentarUbicacion();
+      return;
+    }
     double z;
     try {
       z = _mapController.camera.zoom;

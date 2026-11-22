@@ -189,4 +189,22 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get shareApp => 'Comparteix aquesta app';
+
+  @override
+  String get locationOff =>
+      'La localització del mòbil està apagada. Et mostro el centre de Barcelona.';
+
+  @override
+  String get locationDenied =>
+      'Sense permís d\'ubicació. Et mostro el centre de Barcelona.';
+
+  @override
+  String get locationNoSignal =>
+      'No s\'ha pogut obtenir la teva ubicació. Et mostro el centre de Barcelona.';
+
+  @override
+  String get openSettings => 'Ajustos';
+
+  @override
+  String get retry => 'Torna-ho a provar';
 }

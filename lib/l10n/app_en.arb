@@ -60,5 +60,10 @@
       }
     }
   },
-  "shareApp": "Share this app"
+  "shareApp": "Share this app",
+  "locationOff": "Location services are off. Showing central Barcelona.",
+  "locationDenied": "No location permission. Showing central Barcelona.",
+  "locationNoSignal": "Couldn't get your location. Showing central Barcelona.",
+  "openSettings": "Settings",
+  "retry": "Retry"
 }
