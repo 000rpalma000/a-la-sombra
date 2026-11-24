@@ -1,8 +1,8 @@
-# Política de privacidad — A la sombra
+# Política de privacidad — Alombra
 
 _Última actualización: 2026-09-04_
 
-A la sombra calcula rutas a pie que procuran ir por la sombra durante las horas
+Alombra calcula rutas a pie que procuran ir por la sombra durante las horas
 de sol.
 
 ## Qué datos se usan
@@ -48,11 +48,11 @@ hola@lat41lab.com
 
 ---
 
-# Privacy Policy — A la sombra (English)
+# Privacy Policy — Alombra (English)
 
 _Last updated: 2026-09-04_
 
-"A la sombra" computes walking routes that try to stay in the shade during
+"Alombra" computes walking routes that try to stay in the shade during
 daylight.
 
 ## Data used

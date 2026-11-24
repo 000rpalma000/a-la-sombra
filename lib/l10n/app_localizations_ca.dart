@@ -9,7 +9,7 @@ class AppLocalizationsCa extends AppLocalizations {
   AppLocalizationsCa([String locale = 'ca']) : super(locale);
 
   @override
-  String get appTitle => 'A la sombra';
+  String get appTitle => 'Alombra';
 
   @override
   String get exampleRoute => 'Ruta d\'exemple';
@@ -142,25 +142,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get creditSun => 'Posició del sol: algorisme de Jean Meeus.';
 
   @override
-  String get removeAdsButton => 'Treu anuncis · 1,99 €';
-
-  @override
-  String get adsSectionTitle => 'Anuncis';
-
-  @override
-  String get adsAlreadyRemoved => 'Ja has tret els anuncis. Gràcies!';
-
-  @override
-  String get removeAdsPromptTitle => 'Sense anuncis?';
-
-  @override
-  String get removeAdsPromptBody => 'Treu-los per sempre amb un únic pagament.';
-
-  @override
   String get notNow => 'Ara no';
-
-  @override
-  String get adsRemovedMockDone => 'Anuncis trets (simulat).';
 
   @override
   String get introTitle => 'A l\'ombra o al sol?';

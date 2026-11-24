@@ -9,7 +9,7 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
-  String get appTitle => 'A la sombra';
+  String get appTitle => 'Alombra';
 
   @override
   String get exampleRoute => 'Beispielroute';
@@ -143,27 +143,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get creditSun => 'Sonnenstand: Algorithmus von Jean Meeus.';
 
   @override
-  String get removeAdsButton => 'Werbung entfernen · 1,99 €';
-
-  @override
-  String get adsSectionTitle => 'Werbung';
-
-  @override
-  String get adsAlreadyRemoved =>
-      'Du hast die Werbung bereits entfernt. Danke!';
-
-  @override
-  String get removeAdsPromptTitle => 'Ohne Werbung?';
-
-  @override
-  String get removeAdsPromptBody =>
-      'Entferne sie dauerhaft mit einer einmaligen Zahlung.';
-
-  @override
   String get notNow => 'Jetzt nicht';
-
-  @override
-  String get adsRemovedMockDone => 'Werbung entfernt (simuliert).';
 
   @override
   String get introTitle => 'Schatten oder Sonne?';

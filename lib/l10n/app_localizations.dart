@@ -109,7 +109,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In es, this message translates to:
-  /// **'A la sombra'**
+  /// **'Alombra'**
   String get appTitle;
 
   /// No description provided for @exampleRoute.
@@ -334,47 +334,11 @@ abstract class AppLocalizations {
   /// **'Posición del sol: algoritmo de Jean Meeus.'**
   String get creditSun;
 
-  /// No description provided for @removeAdsButton.
-  ///
-  /// In es, this message translates to:
-  /// **'Quitar anuncios · 1,99 €'**
-  String get removeAdsButton;
-
-  /// No description provided for @adsSectionTitle.
-  ///
-  /// In es, this message translates to:
-  /// **'Anuncios'**
-  String get adsSectionTitle;
-
-  /// No description provided for @adsAlreadyRemoved.
-  ///
-  /// In es, this message translates to:
-  /// **'Ya has quitado los anuncios. ¡Gracias!'**
-  String get adsAlreadyRemoved;
-
-  /// No description provided for @removeAdsPromptTitle.
-  ///
-  /// In es, this message translates to:
-  /// **'¿Sin anuncios?'**
-  String get removeAdsPromptTitle;
-
-  /// No description provided for @removeAdsPromptBody.
-  ///
-  /// In es, this message translates to:
-  /// **'Quítalos para siempre con un único pago.'**
-  String get removeAdsPromptBody;
-
   /// No description provided for @notNow.
   ///
   /// In es, this message translates to:
   /// **'Ahora no'**
   String get notNow;
-
-  /// No description provided for @adsRemovedMockDone.
-  ///
-  /// In es, this message translates to:
-  /// **'Anuncios quitados (simulado).'**
-  String get adsRemovedMockDone;
 
   /// No description provided for @introTitle.
   ///

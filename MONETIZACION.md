@@ -1,6 +1,6 @@
 # Monetización (apagada hoy)
 
-A la sombra se publica **sin anuncios y sin cobros**.
+Alombra se publica **sin anuncios y sin cobros**.
 
 ## Anuncios (AdMob)
 

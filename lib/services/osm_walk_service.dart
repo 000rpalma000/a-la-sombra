@@ -46,7 +46,7 @@ class OsmWalkService {
     'https://overpass-api.de/api/interpreter',
     'https://overpass.private.coffee/api/interpreter',
   ];
-  static const _userAgent = 'ruta_sombra/0.1 (Flutter)';
+  static const _userAgent = 'alombra/1.0 (Flutter)';
 
   static const _highwaysCaminables =
       'footway|path|pedestrian|living_street|steps|residential|service|'

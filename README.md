@@ -1,4 +1,4 @@
-# ruta_sombra
+# Alombra (paquete `ruta_sombra`)
 
 App Flutter que calcula rutas a pie **priorizando ir por la sombra** durante las horas de sol. Proyecto hermano de `places_barcelona`.
 

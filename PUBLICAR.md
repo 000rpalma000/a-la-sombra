@@ -2,10 +2,10 @@
 
 Sirve para las dos apps:
 
-| | Terrazeo | A la sombra |
+| | Terrazeo | Alombra |
 |---|---|---|
 | Repo | `terrazeo` | `a-la-sombra` |
-| ID (iOS y Android) | `com.terrazeo.app` | `com.alasombra.app` |
+| ID (iOS y Android) | `com.lat41lab.terrazeo` | `com.lat41lab.alombra` |
 | Versión | `pubspec.yaml` → `version:` | ídem |
 | Privacidad | https://000rpalma000.github.io/terrazeo/privacy.html | https://000rpalma000.github.io/a-la-sombra/privacy.html |
 
@@ -41,11 +41,11 @@ una cuenta de cada publicas todas las apps que quieras.
 
 ### Crear la app
 1. <https://appstoreconnect.apple.com> → Apps → **+** → Nueva app.
-   - Plataforma iOS, nombre **A la sombra** (tiene que estar libre en toda la
-     tienda; si no lo está, p. ej. "A la sombra – rutas frescas").
-   - Bundle ID: `com.alasombra.app` (se crea solo al compilar con firma
+   - Plataforma iOS, nombre **Alombra** (tiene que estar libre en toda la
+     tienda; si no lo está, p. ej. "Alombra – rutas frescas").
+   - Bundle ID: `com.lat41lab.alombra` (se crea solo al compilar con firma
      automática; si no aparece, créalo en developer.apple.com → Identifiers).
-   - SKU: cualquier texto, p. ej. `alasombra`.
+   - SKU: cualquier texto, p. ej. `alombra`.
 2. **Información de la app:** categoría (Viajes o Estilo de vida), URL de
    privacidad, edad (cuestionario: todo "no" → 4+).
 3. **Privacidad de la app:** la app envía coordenadas a servicios de terceros
@@ -85,7 +85,7 @@ open build/ios/archive/Runner.xcarchive   # Xcode → Distribute App → App Sto
 ### Clave de firma (una sola vez por app; ¡guárdala bien!)
 ```sh
 cd android
-keytool -genkey -v -keystore ~/claves/alasombra-upload.jks -keyalg RSA \
+keytool -genkey -v -keystore ~/claves/alombra-upload.jks -keyalg RSA \
         -keysize 2048 -validity 10000 -alias upload
 ```
 Crea `android/key.properties` (ya está en `.gitignore`, **no se sube**):
@@ -93,7 +93,7 @@ Crea `android/key.properties` (ya está en `.gitignore`, **no se sube**):
 storePassword=…
 keyPassword=…
 keyAlias=upload
-storeFile=/Users/<tú>/claves/alasombra-upload.jks
+storeFile=/Users/<tú>/claves/alombra-upload.jks
 ```
 Con ese archivo, `build.gradle.kts` firma solo con tu clave. Activa **Play App
 Signing** (viene por defecto): Google guarda la clave final y, si pierdes la

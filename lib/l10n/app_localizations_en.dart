@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'A la sombra';
+  String get appTitle => 'Alombra';
 
   @override
   String get exampleRoute => 'Example route';
@@ -142,26 +142,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get creditSun => 'Sun position: algorithm by Jean Meeus.';
 
   @override
-  String get removeAdsButton => 'Remove ads · €1.99';
-
-  @override
-  String get adsSectionTitle => 'Ads';
-
-  @override
-  String get adsAlreadyRemoved => 'You already removed ads. Thank you!';
-
-  @override
-  String get removeAdsPromptTitle => 'No ads?';
-
-  @override
-  String get removeAdsPromptBody =>
-      'Remove them for good with a one-time payment.';
-
-  @override
   String get notNow => 'Not now';
-
-  @override
-  String get adsRemovedMockDone => 'Ads removed (mock).';
 
   @override
   String get introTitle => 'Shade or sun?';
