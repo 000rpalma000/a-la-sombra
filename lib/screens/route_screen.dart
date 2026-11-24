@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -29,6 +31,11 @@ enum _Aviso { sinRuta, deNoche, red }
 
 class _RouteScreenState extends State<RouteScreen> {
   final _mapController = MapController();
+
+  /// Se completa cuando el mapa se ha dibujado por primera vez. Antes de eso
+  /// el [MapController] lanza si se usa (pasaba cuando la ubicación respondía
+  /// al instante, p. ej. con el permiso denegado).
+  final _mapaListo = Completer<void>();
   final _location = const LocationService();
   final _osm = OsmWalkService();
   final _shadow = const ShadowService();
@@ -89,7 +96,8 @@ class _RouteScreenState extends State<RouteScreen> {
   void initState() {
     super.initState();
     _quizaMostrarIntro();
-    _location.ubicacionActual().then((u) {
+    _location.ubicacionActual().then((u) async {
+      await _mapaListo.future;
       if (!mounted) return;
       setState(() {
         _centroInicial = u.punto;
@@ -223,17 +231,24 @@ class _RouteScreenState extends State<RouteScreen> {
           ruta.polyline.any((p) =>
               Geo.distanciaAPolilinea(p, [inicio, fin]) > margenCoberturaM);
       if (seSale) {
-        final corredor2 = await _osm.descargarCorredor(
-          ruta.polyline,
-          radioCallesM: 220,
-          radioEdificiosM: 300,
-        );
-        final shadow2 = _shadow.construir(corredor2.edificios, centro, hora);
-        final ruta2 = calcular(corredor2, shadow2);
-        if (ruta2 != null) {
-          corredor = corredor2;
-          shadow = shadow2;
-          ruta = ruta2;
+        // Si esta segunda descarga falla, se queda la ruta de la primera
+        // pasada (con alguna fachada de menos en los extremos) en vez de
+        // perderlo todo.
+        try {
+          final corredor2 = await _osm.descargarCorredor(
+            ruta.polyline,
+            radioCallesM: 220,
+            radioEdificiosM: 300,
+          );
+          final shadow2 = _shadow.construir(corredor2.edificios, centro, hora);
+          final ruta2 = calcular(corredor2, shadow2);
+          if (ruta2 != null) {
+            corredor = corredor2;
+            shadow = shadow2;
+            ruta = ruta2;
+          }
+        } catch (e) {
+          debugPrint('[ruta] falló la 2ª pasada, me quedo con la 1ª: $e');
         }
       }
 
@@ -453,6 +468,9 @@ class _RouteScreenState extends State<RouteScreen> {
     return FlutterMap(
       mapController: _mapController,
       options: MapOptions(
+        onMapReady: () {
+          if (!_mapaListo.isCompleted) _mapaListo.complete();
+        },
         initialCenter: _centroInicial,
         initialZoom: 15,
         onTap: (_, punto) => _onTapMapa(punto),
