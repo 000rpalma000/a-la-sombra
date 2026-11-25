@@ -17,6 +17,7 @@
   "noRoute": "Nessun percorso pedonale trovato tra quei punti.",
   "nightShortest": "È notte: viene mostrato il percorso più breve.",
   "networkError": "Impossibile scaricare i dati della mappa. Controlla la connessione e riprova.",
+  "mapDataUnavailable": "Non è stato possibile caricare le strade e gli edifici di questa zona. Riprova tra un po'.",
   "statKm": "{value} km",
   "statM": "{value} m",
   "statMinutes": "{value} min",

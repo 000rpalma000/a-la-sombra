@@ -65,6 +65,10 @@ class AppLocalizationsCa extends AppLocalizations {
       'No s\'han pogut baixar les dades del mapa. Comprova la connexió i torna-ho a provar.';
 
   @override
+  String get mapDataUnavailable =>
+      'No s\'han pogut carregar els carrers i edificis d\'aquesta zona. Torna-ho a provar d\'aquí a una estona.';
+
+  @override
   String statKm(String value) {
     return '$value km';
   }

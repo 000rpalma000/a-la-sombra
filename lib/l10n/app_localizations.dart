@@ -208,6 +208,12 @@ abstract class AppLocalizations {
   /// **'No se han podido descargar los datos del mapa. Revisa la conexión e inténtalo de nuevo.'**
   String get networkError;
 
+  /// No description provided for @mapDataUnavailable.
+  ///
+  /// In es, this message translates to:
+  /// **'No se han podido cargar las calles y edificios de esta zona. Vuelve a intentarlo en un rato.'**
+  String get mapDataUnavailable;
+
   /// No description provided for @statKm.
   ///
   /// In es, this message translates to:

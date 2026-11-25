@@ -34,6 +34,7 @@
   "noRoute": "No se ha encontrado ninguna ruta peatonal entre esos puntos.",
   "nightShortest": "Es de noche: se muestra la ruta más corta.",
   "networkError": "No se han podido descargar los datos del mapa. Revisa la conexión e inténtalo de nuevo.",
+  "mapDataUnavailable": "No se han podido cargar las calles y edificios de esta zona. Vuelve a intentarlo en un rato.",
   "statKm": "{value} km",
   "@statKm": {
     "placeholders": {

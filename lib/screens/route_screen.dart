@@ -12,6 +12,7 @@ import '../models/shadow_map.dart';
 import '../services/locale_controller.dart';
 import '../services/location_service.dart';
 import '../services/osm_walk_service.dart';
+import '../services/overpass.dart';
 import '../services/router_service.dart';
 import '../services/shadow_service.dart';
 import '../widgets/intro_sheet.dart';
@@ -27,7 +28,7 @@ class RouteScreen extends StatefulWidget {
 }
 
 /// Motivo por el que no hay ruta (se traduce al pintar, no al guardarlo).
-enum _Aviso { sinRuta, deNoche, red }
+enum _Aviso { sinRuta, deNoche, red, servidor }
 
 class _RouteScreenState extends State<RouteScreen> {
   final _mapController = MapController();
@@ -284,7 +285,9 @@ class _RouteScreenState extends State<RouteScreen> {
     } catch (e) {
       debugPrint('[ruta] error: $e');
       if (!mounted) return;
-      setState(() => _aviso = _Aviso.red);
+      // Servidor lleno o caído no es lo mismo que no tener conexión.
+      setState(() =>
+          _aviso = e is OverpassNoDisponible ? _Aviso.servidor : _Aviso.red);
     } finally {
       if (mounted) setState(() => _calculando = false);
     }
@@ -652,6 +655,7 @@ class _RouteScreenState extends State<RouteScreen> {
         _Aviso.sinRuta => l10n.noRoute,
         _Aviso.deNoche => l10n.nightShortest,
         _Aviso.red => l10n.networkError,
+        _Aviso.servidor => l10n.mapDataUnavailable,
       };
 
   Widget _resumen(AppLocalizations l10n, RouteResult r) {

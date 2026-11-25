@@ -17,6 +17,7 @@
   "noRoute": "No walking route found between those points.",
   "nightShortest": "It's night: showing the shortest route.",
   "networkError": "Couldn't download map data. Check your connection and try again.",
+  "mapDataUnavailable": "Couldn't load the streets and buildings for this area. Please try again in a while.",
   "statKm": "{value} km",
   "statM": "{value} m",
   "statMinutes": "{value} min",

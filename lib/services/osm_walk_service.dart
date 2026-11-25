@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
@@ -10,6 +11,7 @@ import '../models/building_height.dart';
 import '../models/geo.dart';
 import '../models/shadow_map.dart';
 import '../models/walk_graph.dart';
+import 'overpass.dart';
 
 /// Resultado de descargar el corredor de una ruta: viario + edificios.
 class CorredorOsm {
@@ -40,12 +42,7 @@ class OsmWalkService {
 
   final http.Client _client;
 
-  /// Espejos públicos de Overpass. Se consultan en paralelo (carrera).
-  static const _endpoints = [
-    'https://overpass.kumi.systems/api/interpreter',
-    'https://overpass-api.de/api/interpreter',
-    'https://overpass.private.coffee/api/interpreter',
-  ];
+  late final _op = Overpass(_client, userAgent: _userAgent);
   static const _userAgent = 'alombra/1.0 (Flutter)';
 
   static const _highwaysCaminables =
@@ -75,7 +72,7 @@ class OsmWalkService {
   way["highway"~"^($_highwaysCaminables)\$"]["foot"!~"no|private"]["access"!~"private|no"](around:${radioCallesM.round()},$around);
   way["building"](around:${radioEdificiosM.round()},$around);
 );
-out geom;
+out geom qt;
 ''';
 
     final clave = _claveCache(poli, radioCallesM, radioEdificiosM);
@@ -139,54 +136,13 @@ out geom;
 
   /// Lanza la consulta a todos los espejos a la vez y devuelve el primero que
   /// responde 200 con JSON válido.
-  Future<Map<String, dynamic>> _overpassRace(String query) async {
-    final completer = Completer<Map<String, dynamic>>();
-    final errores = <String>[];
-    var pendientes = _endpoints.length;
+  /// Consulta Overpass (con reintentos, ver [Overpass]) y decodifica la
+  /// respuesta fuera del hilo de la interfaz.
+  Future<Map<String, dynamic>> _consultar(String query) async =>
+      _decodificar(await _op.consultar(query));
 
-    void fallo(String msg) {
-      errores.add(msg);
-      if (--pendientes == 0 && !completer.isCompleted) {
-        completer.completeError(
-          Exception('Overpass no disponible: ${errores.join(' | ')}'),
-        );
-      }
-    }
-
-    for (final endpoint in _endpoints) {
-      _client
-          .post(
-            Uri.parse(endpoint),
-            headers: {
-              'User-Agent': _userAgent,
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: {'data': query},
-          )
-          .timeout(const Duration(seconds: 40))
-          .then((resp) {
-        if (completer.isCompleted) return;
-        if (resp.statusCode == 200) {
-          try {
-            completer.complete(
-              jsonDecode(utf8.decode(resp.bodyBytes)) as Map<String, dynamic>,
-            );
-          } catch (e) {
-            fallo('json $endpoint: $e');
-          }
-        } else {
-          fallo('HTTP ${resp.statusCode} $endpoint');
-        }
-      }).catchError((Object e) {
-        if (!completer.isCompleted) fallo('$e ($endpoint)');
-      });
-    }
-
-    return completer.future
-        .timeout(const Duration(seconds: 45), onTimeout: () {
-      throw Exception('Overpass no respondió a tiempo (${errores.join(' | ')})');
-    });
-  }
+  static Future<Map<String, dynamic>> _decodificar(String cuerpo) =>
+      Isolate.run(() => jsonDecode(cuerpo) as Map<String, dynamic>);
 
   // --- Caché en disco ---------------------------------------------------
 
@@ -233,7 +189,7 @@ out geom;
       }
     }
 
-    final data = await _overpassRace(query);
+    final data = await _consultar(query);
     if (file != null) {
       try {
         await file.writeAsString(jsonEncode(data));

@@ -34,6 +34,7 @@
   "noRoute": "Zwischen diesen Punkten wurde kein Fußweg gefunden.",
   "nightShortest": "Es ist Nacht: die kürzeste Route wird angezeigt.",
   "networkError": "Kartendaten konnten nicht geladen werden. Prüfe die Verbindung und versuche es erneut.",
+  "mapDataUnavailable": "Die Straßen und Gebäude dieser Gegend konnten nicht geladen werden. Versuche es in einer Weile noch einmal.",
   "statKm": "{value} km",
   "@statKm": {
     "placeholders": {

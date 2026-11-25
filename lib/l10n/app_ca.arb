@@ -17,6 +17,7 @@
   "noRoute": "No s'ha trobat cap ruta a peu entre aquests punts.",
   "nightShortest": "És de nit: es mostra la ruta més curta.",
   "networkError": "No s'han pogut baixar les dades del mapa. Comprova la connexió i torna-ho a provar.",
+  "mapDataUnavailable": "No s'han pogut carregar els carrers i edificis d'aquesta zona. Torna-ho a provar d'aquí a una estona.",
   "statKm": "{value} km",
   "statM": "{value} m",
   "statMinutes": "{value} min",
