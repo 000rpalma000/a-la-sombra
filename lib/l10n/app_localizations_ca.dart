@@ -137,10 +137,14 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get creditMap =>
-      'Carrers i edificis: © col·laboradors d’OpenStreetMap (ODbL).';
+      'Carrers i edificis: © col·laboradors d’OpenStreetMap (ODbL), preparats per Lat41 Lab amb extractes de Geofabrik.';
 
   @override
-  String get creditTiles => 'Tessel·les del mapa: OpenStreetMap.';
+  String get creditTiles =>
+      'Mapa base: © MapTiler · © col·laboradors d’OpenStreetMap.';
+
+  @override
+  String get osmAttribution => '© col·laboradors d’OpenStreetMap';
 
   @override
   String get creditSun => 'Posició del sol: algorisme de Jean Meeus.';

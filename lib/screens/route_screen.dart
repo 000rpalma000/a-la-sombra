@@ -551,8 +551,23 @@ class _RouteScreenState extends State<RouteScreen> {
               ),
           ],
         ),
-        RichAttributionWidget(
-          attributions: [TextSourceAttribution(MapConfig.atribucion)],
+        // Siempre visible, como pide OpenStreetMap (y el proveedor del mapa).
+        Align(
+          alignment: Alignment.bottomRight,
+          child: IgnorePointer(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+              color: const Color(0xB3FFFFFF),
+              child: Text(
+                [
+                  if (MapConfig.atribucionTeselas.isNotEmpty)
+                    MapConfig.atribucionTeselas,
+                  AppLocalizations.of(context).osmAttribution,
+                ].join(' · '),
+                style: const TextStyle(fontSize: 10, color: Color(0xDD000000)),
+              ),
+            ),
+          ),
         ),
       ],
     );
