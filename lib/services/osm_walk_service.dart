@@ -4,7 +4,7 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:math' as math;
 
-import 'package:flutter/foundation.dart' show visibleForTesting;
+import 'package:flutter/foundation.dart' show debugPrint, visibleForTesting;
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 import 'package:path_provider/path_provider.dart';
@@ -14,6 +14,7 @@ import '../models/geo.dart';
 import '../models/shadow_map.dart';
 import '../models/tesela.dart';
 import '../models/walk_graph.dart';
+import 'datos_lat41.dart';
 import 'overpass.dart';
 
 /// Resultado de descargar el corredor de una ruta: viario + edificios.
@@ -47,6 +48,7 @@ class OsmWalkService {
   final http.Client _client;
 
   late final _op = Overpass(_client, userAgent: _userAgent);
+  late final _datos = DatosLat41(_client, directorio: _cacheDir);
   static const _userAgent = 'alombra/1.0 (Flutter)';
 
   static const _highwaysCaminables =
@@ -86,9 +88,16 @@ class OsmWalkService {
         if (!guardadas.containsKey(t)) t,
     ];
     final porTesela = <Tesela, List<dynamic>>{...guardadas};
-    for (var k = 0; k < faltan.length; k += _teselasPorPeticion) {
-      final lote = faltan.sublist(
-          k, math.min(k + _teselasPorPeticion, faltan.length));
+    // Zonas con datos propios (Barcelona): de data.lat41lab.com.
+    if (faltan.isNotEmpty) porTesela.addAll(await _descargarPropias(faltan));
+    // El resto, o si eso ha fallado, de Overpass.
+    final aOverpass = [
+      for (final t in faltan)
+        if (!porTesela.containsKey(t)) t,
+    ];
+    for (var k = 0; k < aOverpass.length; k += _teselasPorPeticion) {
+      final lote = aOverpass.sublist(
+          k, math.min(k + _teselasPorPeticion, aOverpass.length));
       porTesela.addAll(await _descargar(lote));
     }
 
@@ -181,6 +190,56 @@ class OsmWalkService {
   }
 
   // --- Descarga por teselas -----------------------------------------------
+
+  static final _caminables = _highwaysCaminables.split('|').toSet();
+
+  /// Las de [ts] cubiertas por los datos propios, en paralelo (las vacías
+  /// no se piden). Las que fallan no aparecen en el resultado.
+  Future<Map<Tesela, List<dynamic>>> _descargarPropias(List<Tesela> ts) async {
+    final m = await _datos.manifiesto();
+    if (m == null) return {};
+    final dir = await _cacheDir();
+    final res = <Tesela, List<dynamic>>{};
+    final cron = Stopwatch()..start();
+    final propias = [
+      for (final t in ts)
+        if (m.cubre(t.i, t.j)) t,
+    ];
+    await Future.wait([
+      for (final t in propias)
+        () async {
+          try {
+            final cuerpo =
+                m.vacia(t.i, t.j) ? null : await _datos.cuadricula(t.clave);
+            final (json, els) = await _convertirEnIsolate(cuerpo);
+            res[t] = els;
+            if (dir != null) {
+              try {
+                await File('${dir.path}/$_prefijoCache${t.clave}.json')
+                    .writeAsString(json);
+              } catch (_) {}
+            }
+          } catch (e) {
+            debugPrint('[lat41] ${t.clave}: $e');
+          }
+        }(),
+    ]);
+    if (propias.isNotEmpty) {
+      debugPrint('[lat41] ${res.length}/${propias.length} cuadrículas en '
+          '${cron.elapsedMilliseconds} ms');
+    }
+    return res;
+  }
+
+  /// Cuadrícula propia (o vacía, con `null`) → elementos de Overpass con
+  /// solo las vías caminables, y su JSON para la caché.
+  static Future<(String, List<dynamic>)> _convertirEnIsolate(String? cuerpo) =>
+      Isolate.run(() {
+        final els = cuerpo == null
+            ? const <Map<String, dynamic>>[]
+            : DatosLat41.aElementos(cuerpo, vias: _caminables);
+        return (jsonEncode(els), els);
+      });
 
   /// Descarga [lote] en una sola consulta (la caja que lo envuelve), lo
   /// reparte por teselas y lo guarda en disco. Lanza si Overpass falla.
