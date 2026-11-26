@@ -12,9 +12,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get appTitle => 'Alombra';
 
   @override
-  String get exampleRoute => 'Percorso di esempio';
-
-  @override
   String get clearPoints => 'Cancella i punti';
 
   @override

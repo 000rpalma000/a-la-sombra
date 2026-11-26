@@ -84,9 +84,6 @@ class _RouteScreenState extends State<RouteScreen> {
     return false;
   }
 
-  /// TODO: provisional — arranca con una ruta de ejemplo para probar sin tocar.
-  static const bool _demoAlArrancar = false;
-
   static const _verde = Color(0xFF2E7D32); // sombra
   static const _sol = Color(0xFFEF8A17); // sol
 
@@ -107,13 +104,6 @@ class _RouteScreenState extends State<RouteScreen> {
       });
       _mapController.move(u.punto, 15);
       if (u.motivo != null) _avisarSinUbicacion(u.motivo!);
-      if (_demoAlArrancar) {
-        setState(() {
-          _inicio = LatLng(41.3874, 2.1686); // Pl. Catalunya
-          _fin = LatLng(41.3809, 2.1734); // Pl. Reial
-        });
-        _buscar();
-      }
     });
   }
 
@@ -311,22 +301,6 @@ class _RouteScreenState extends State<RouteScreen> {
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => const AboutScreen()),
             ),
-          ),
-          // TODO: provisional para pruebas: fija un inicio/destino de ejemplo.
-          IconButton(
-            tooltip: l10n.exampleRoute,
-            icon: const Icon(Icons.casino_outlined),
-            onPressed: _calculando
-                ? null
-                : () {
-                    setState(() {
-                      _inicio = LatLng(41.3874, 2.1686); // Pl. Catalunya
-                      _fin = LatLng(41.3809, 2.1734); // Pl. Reial
-                      _ruta = null;
-                      _aviso = null;
-                    });
-                    _buscar();
-                  },
           ),
           if (_inicio != null || _fin != null)
             IconButton(

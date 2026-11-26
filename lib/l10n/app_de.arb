@@ -2,7 +2,6 @@
   "@@locale": "de",
   "appTitle": "Alombra",
   "@appTitle": {},
-  "exampleRoute": "Beispielroute",
   "clearPoints": "Punkte löschen",
   "tapForStart": "Tippe auf die Karte, um den Start zu setzen.",
   "tapForEnd": "Jetzt tippe auf das Ziel.",

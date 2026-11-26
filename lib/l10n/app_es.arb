@@ -2,7 +2,6 @@
   "@@locale": "es",
   "appTitle": "Alombra",
   "@appTitle": {},
-  "exampleRoute": "Ruta de ejemplo",
   "clearPoints": "Borrar puntos",
   "tapForStart": "Toca el mapa para marcar el inicio.",
   "tapForEnd": "Ahora toca el destino.",

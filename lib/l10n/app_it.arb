@@ -1,7 +1,6 @@
 {
   "@@locale": "it",
   "appTitle": "Alombra",
-  "exampleRoute": "Percorso di esempio",
   "clearPoints": "Cancella i punti",
   "tapForStart": "Tocca la mappa per impostare la partenza.",
   "tapForEnd": "Ora tocca la destinazione.",

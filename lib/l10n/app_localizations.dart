@@ -112,12 +112,6 @@ abstract class AppLocalizations {
   /// **'Alombra'**
   String get appTitle;
 
-  /// No description provided for @exampleRoute.
-  ///
-  /// In es, this message translates to:
-  /// **'Ruta de ejemplo'**
-  String get exampleRoute;
-
   /// No description provided for @clearPoints.
   ///
   /// In es, this message translates to:

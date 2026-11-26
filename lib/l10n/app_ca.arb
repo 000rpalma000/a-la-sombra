@@ -1,7 +1,6 @@
 {
   "@@locale": "ca",
   "appTitle": "Alombra",
-  "exampleRoute": "Ruta d'exemple",
   "clearPoints": "Esborra els punts",
   "tapForStart": "Toca el mapa per marcar l'inici.",
   "tapForEnd": "Ara toca la destinació.",

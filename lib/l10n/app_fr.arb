@@ -1,7 +1,6 @@
 {
   "@@locale": "fr",
   "appTitle": "Alombra",
-  "exampleRoute": "Itinéraire d'exemple",
   "clearPoints": "Effacer les points",
   "tapForStart": "Touchez la carte pour définir le départ.",
   "tapForEnd": "Touchez maintenant la destination.",
