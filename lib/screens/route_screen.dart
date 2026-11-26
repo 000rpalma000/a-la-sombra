@@ -462,6 +462,7 @@ class _RouteScreenState extends State<RouteScreen> {
           urlTemplate: MapConfig.urlTemplate,
           userAgentPackageName: MapConfig.userAgent,
           retinaMode: RetinaMode.isHighDensity(context),
+          tileProvider: MapConfig.proveedorTeselas(),
         ),
         if (_ruta != null)
           PolylineLayer(
@@ -525,6 +526,7 @@ class _RouteScreenState extends State<RouteScreen> {
               ),
           ],
         ),
+        ?MapConfig.logoProveedor(),
         // Siempre visible, como pide OpenStreetMap (y el proveedor del mapa).
         Align(
           alignment: Alignment.bottomRight,

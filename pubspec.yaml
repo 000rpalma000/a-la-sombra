@@ -45,6 +45,7 @@ dependencies:
   intl: any
   shared_preferences: ^2.5.5
   share_plus: ^13.0.0
+  flutter_svg: ^2.5.1
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +73,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/map/maptiler_logo.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
